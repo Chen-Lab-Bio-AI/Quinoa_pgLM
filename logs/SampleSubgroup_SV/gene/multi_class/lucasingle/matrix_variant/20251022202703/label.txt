@@ -1,0 +1,14 @@
+label
+Mix
+L-mix
+H3
+L1
+H-mix
+H4
+H6
+L2
+H1
+Wild
+H5
+H2
+L3

@@ -1,0 +1,57 @@
+nohup: 忽略输入
+/mnt/data/LucaOneTasks-developv3/LucaOneTasks/src/predict_v2.py:661: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model_args = torch.load(os.path.join(model_dir, "training_args.bin"))
+import apex err: No module named 'apex'
+import apex err: No module named 'apex'
+import apex err: No module named 'apex'
+Unable to use FlashAttention2.
+-------------------------Run Args-------------------------
+{'input_file': '../dataset/SampleSubgroup_SV/gene/multi_class/test/test.csv', 'llm_truncation_seq_length': 4096, 'matrix_embedding_exists': False, 'emb_dir': '../predicts/SampleSubgroup_SV/gene/multi_class/test/seq_embedding/', 'delete_emb': False, 'model_path': '..', 'dataset_name': 'SampleSubgroup_SV', 'dataset_type': 'gene', 'task_type': 'multi_class', 'task_level_type': 'seq_level', 'model_type': 'lucasingle', 'input_type': 'matrix_variant', 'input_mode': 'single', 'time_str': '20251022202703', 'step': '128312', 'ground_truth_idx': 4, 'ground_truth_label_idx_2_name': True, 'save_path': '../predicts/SampleSubgroup_SV/gene/multi_class/test/results_test.csv', 'print_per_num': 10000, 'output_attention_pooling_scores_dirpath': '../predicts/SampleSubgroup_SV/gene/multi_class/test/attention_pooling_scores/', 'gpu_id': 3}
+--------------------------------------------------
+-------------------------Trained Model Args-------------------------
+{'train_data_dir': '../dataset/SampleSubgroup_SV/gene/multi_class/train/', 'dev_data_dir': '../dataset/SampleSubgroup_SV/gene/multi_class/val/', 'test_data_dir': '../dataset/SampleSubgroup_SV/gene/multi_class/test/', 'buffer_size': 1024, 'dataset_name': 'SampleSubgroup_SV', 'dataset_type': 'gene', 'task_type': 'multi_class', 'task_level_type': 'seq_level', 'model_type': 'lucasingle', 'input_type': 'matrix_variant', 'input_mode': 'single', 'alphabet': 'gene', 'seq_subword': False, 'codes_file': None, 'label_type': 'SampleSubgroup', 'label_filepath': '../dataset/SampleSubgroup_SV/gene/multi_class/label.txt', 'output_dir': '../models/SampleSubgroup_SV/gene/multi_class/lucasingle/matrix_variant/20251022202703', 'log_dir': '../logs/SampleSubgroup_SV/gene/multi_class/lucasingle/matrix_variant/20251022202703', 'tb_log_dir': '../tb-logs/SampleSubgroup_SV/gene/multi_class/lucasingle/matrix_variant/20251022202703', 'config_path': '../config/lucasingle/lucasingle_config.json', 'seq_vocab_path': 'gene', 'cache_dir': None, 'seq_pooling_type': 'value_attention', 'matrix_pooling_type': 'weighted_attention', 'fusion_type': 'concat', 'do_train': True, 'do_eval': True, 'do_predict': True, 'do_metrics': True, 'evaluate_during_training': True, 'do_lower_case': False, 'per_gpu_train_batch_size': 16, 'per_gpu_eval_batch_size': 16, 'gradient_accumulation_steps': 1, 'learning_rate': 0.0001, 'weight_decay': 0.01, 'adam_epsilon': 1e-08, 'max_grad_norm': 1.0, 'num_train_epochs': 50, 'max_steps': 149200, 'warmup_steps': 1000, 'beta1': 0.9, 'beta2': 0.98, 'lr_update_strategy': 'step', 'lr_decay_rate': 0.9, 'logging_steps': 1000, 'save_steps': -1, 'eval_all_checkpoints': False, 'no_cuda': False, 'overwrite_output_dir': True, 'overwrite_cache': False, 'seed': 1221, 'fp16': False, 'fp16_opt_level': 'O1', 'local_rank': -1, 'sigmoid': False, 'loss_type': 'cce', 'best_metric_type': 'f1', 'pos_weight': 1.0, 'weight': [2.0, 10.0, 40.0, 20.0, 4.0, 40.0, 20.0, 40.0, 10.0, 1.0, 40.0, 20.0, 40.0], 'focal_loss_alpha': 0.7, 'focal_loss_gamma': 2.0, 'focal_loss_reduce': False, 'asl_gamma_neg': 4.0, 'asl_gamma_pos': 1.0, 'seq_max_length': 3074, 'max_sentence_length': None, 'max_sentences': None, 'no_token_embeddings': True, 'no_position_embeddings': True, 'no_token_type_embeddings': True, 'position_embedding_type': 'absolute', 'embedding_input_size': 2560, 'matrix_max_length': 3074, 'matrix_encoder': False, 'matrix_encoder_act': False, 'trunc_type': 'right', 'model_dirpath': None, 'save_all': False, 'delete_old': True, 'hidden_size': 2560, 'intermediate_size': 4096, 'num_attention_heads': 0, 'num_hidden_layers': 0, 'dropout_prob': 0.1, 'classifier_size': 1024, 'llm_dir': '..', 'llm_type': 'lucaone', 'llm_version': 'lucaone-gene', 'llm_step': '36800000', 'ignore_index': -100, 'non_ignore': False, 'vector_dirpath': '../../vectors/Quinoa/lucaone/lucaone-gene/36800000', 'matrix_dirpath': '../../matrices/Quinoa/lucaone/lucaone-gene/36800000', 'seq_fc_size': 'null', 'matrix_fc_size': 'null', 'vector_fc_size': 'null', 'emb_activate_func': 'gelu', 'fc_activate_func': 'gelu', 'classifier_activate_func': 'gelu', 'not_prepend_bos': False, 'not_append_eos': False, 'loss_reduction': 'mean', 'cross_atten': False, 'self_atten': False, 'seq_max_length_a': None, 'matrix_max_length_a': None, 'embedding_input_size_a': None, 'seq_max_length_b': None, 'matrix_max_length_b': None, 'embedding_input_size_b': None, 'not_seq_encoder_shared': False, 'not_matrix_encoder_shared': False, 'worker_num': 0, 'early_stop_epoch': -1, 'matrix_embedding_exists': True, 'matrix_add_special_token': True, 'embedding_complete': False, 'embedding_complete_seg_overlap': False, 'embedding_fixed_len_a_time': None, 'express_bin_size': None, 'express_bin_size_a': None, 'express_bin_size_b': None, 'variant_bin_size': 4, 'time_str': '20251022202706', 'output_mode': 'multi_class', 'n_gpu': 1, 'device': device(type='cuda'), 'label_size': 13, 'prepend_bos': True, 'append_eos': True, 'vocab_size': 13, 'llm_dirpath': '../llm/models/lucaone/lucaone-gene/checkpoint-step36800000', 'train_batch_size': 16}
+--------------------------------------------------
+------Download Trained LLM(LucaOne)------
+------Before loading the model:------
+GPU ID: 3
+Device 3: NVIDIA L20X
+Total memory: 140.40136719 GB
+Used memory: 139.65405273 GB
+Free memory: 0.74731445 GB
+load model on cuda: cuda:3
+load pretrained model: ../models/SampleSubgroup_SV/gene/multi_class/lucasingle/matrix_variant/20251022202703/checkpoint-128312
+Traceback (most recent call last):
+  File "/mnt/data/LucaOneTasks-developv3/LucaOneTasks/src/predict_v2.py", line 476, in load_trained_model
+    model = model_class.from_pretrained(model_dirpath, args=args)
+  File "/mnt/data/anaconda3/envs/quinoaMod/lib/python3.9/site-packages/transformers/modeling_utils.py", line 3626, in from_pretrained
+    model = cls(config, *model_args, **model_kwargs)
+  File "/mnt/data/LucaOneTasks-developv3/LucaOneTasks/src/lucasingle/models/LucaSingle.py", line 293, in __init__
+    create_loss_function(
+  File "/mnt/data/LucaOneTasks-developv3/LucaOneTasks/src/common/loss.py", line 239, in create_loss_function
+    weight = torch.tensor(weight, dtype=torch.float32).to(args.device)
+RuntimeError: CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/data/LucaOneTasks-developv3/LucaOneTasks/src/predict_v2.py", line 1978, in <module>
+    batch_results, label_id_2_name = run(
+  File "/mnt/data/LucaOneTasks-developv3/LucaOneTasks/src/predict_v2.py", line 754, in run
+    model_config, seq_subword, seq_tokenizer, trained_model = load_model(model_args, model_type, model_dir)
+  File "/mnt/data/LucaOneTasks-developv3/LucaOneTasks/src/predict_v2.py", line 528, in load_model
+    model = load_trained_model(model_config, args, model_class, model_dir)
+  File "/mnt/data/LucaOneTasks-developv3/LucaOneTasks/src/predict_v2.py", line 478, in load_trained_model
+    model = model_class(model_config, args=args)
+  File "/mnt/data/LucaOneTasks-developv3/LucaOneTasks/src/lucasingle/models/LucaSingle.py", line 293, in __init__
+    create_loss_function(
+  File "/mnt/data/LucaOneTasks-developv3/LucaOneTasks/src/common/loss.py", line 239, in create_loss_function
+    weight = torch.tensor(weight, dtype=torch.float32).to(args.device)
+RuntimeError: CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+

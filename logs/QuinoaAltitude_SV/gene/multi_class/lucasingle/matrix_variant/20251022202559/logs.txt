@@ -1,0 +1,825 @@
+{"adam_epsilon": 1e-08, "alphabet": "gene", "append_eos": true, "asl_gamma_neg": 4.0, "asl_gamma_pos": 1.0, "best_metric_type": "f1", "beta1": 0.9, "beta2": 0.98, "buffer_size": 1024, "cache_dir": null, "classifier_activate_func": "gelu", "classifier_size": 1024, "codes_file": null, "config_path": "../config/lucasingle/lucasingle_config.json", "cross_atten": false, "dataset_name": "QuinoaAltitude_SV", "dataset_type": "gene", "delete_old": true, "dev_data_dir": "../dataset/QuinoaAltitude_SV/gene/multi_class/val/", "device": "cuda", "do_eval": true, "do_lower_case": false, "do_metrics": true, "do_predict": true, "do_train": true, "dropout_prob": 0.1, "early_stop_epoch": -1, "emb_activate_func": "gelu", "embedding_complete": false, "embedding_complete_seg_overlap": false, "embedding_fixed_len_a_time": null, "embedding_input_size": 2560, "embedding_input_size_a": null, "embedding_input_size_b": null, "eval_all_checkpoints": false, "evaluate_during_training": true, "express_bin_size": null, "express_bin_size_a": null, "express_bin_size_b": null, "fc_activate_func": "gelu", "focal_loss_alpha": 0.7, "focal_loss_gamma": 2.0, "focal_loss_reduce": false, "fp16": false, "fp16_opt_level": "O1", "fusion_type": "concat", "gradient_accumulation_steps": 1, "hidden_size": 2560, "ignore_index": -100, "input_mode": "single", "input_type": "matrix_variant", "intermediate_size": 4096, "label_filepath": "../dataset/QuinoaAltitude_SV/gene/multi_class/label.txt", "label_size": 4, "label_type": "QuinoaAltitude", "learning_rate": 0.0001, "llm_dir": "..", "llm_dirpath": "../llm/models/lucaone/lucaone-gene/checkpoint-step36800000", "llm_step": "36800000", "llm_type": "lucaone", "llm_version": "lucaone-gene", "local_rank": -1, "log_dir": "../logs/QuinoaAltitude_SV/gene/multi_class/lucasingle/matrix_variant/20251022202559", "logging_steps": 1000, "loss_reduction": "mean", "loss_type": "cce", "lr_decay_rate": 0.9, "lr_update_strategy": "step", "matrix_add_special_token": true, "matrix_dirpath": "../../matrices/Quinoa/lucaone/lucaone-gene/36800000", "matrix_embedding_exists": true, "matrix_encoder": false, "matrix_encoder_act": false, "matrix_fc_size": "null", "matrix_max_length": 3074, "matrix_max_length_a": null, "matrix_max_length_b": null, "matrix_pooling_type": "weighted_attention", "max_grad_norm": 1.0, "max_sentence_length": null, "max_sentences": null, "max_steps": -1, "model_dirpath": null, "model_type": "lucasingle", "n_gpu": 1, "no_cuda": false, "no_position_embeddings": true, "no_token_embeddings": true, "no_token_type_embeddings": true, "non_ignore": false, "not_append_eos": false, "not_matrix_encoder_shared": false, "not_prepend_bos": false, "not_seq_encoder_shared": false, "num_attention_heads": 0, "num_hidden_layers": 0, "num_train_epochs": 50, "output_dir": "../models/QuinoaAltitude_SV/gene/multi_class/lucasingle/matrix_variant/20251022202559", "output_mode": "multi_class", "overwrite_cache": false, "overwrite_output_dir": true, "per_gpu_eval_batch_size": 16, "per_gpu_train_batch_size": 16, "pos_weight": 1.0, "position_embedding_type": "absolute", "prepend_bos": true, "save_all": false, "save_steps": -1, "seed": 1221, "self_atten": false, "seq_fc_size": "null", "seq_max_length": 3074, "seq_max_length_a": null, "seq_max_length_b": null, "seq_pooling_type": "value_attention", "seq_subword": false, "seq_vocab_path": "gene", "sigmoid": false, "task_level_type": "seq_level", "task_type": "multi_class", "tb_log_dir": "../tb-logs/QuinoaAltitude_SV/gene/multi_class/lucasingle/matrix_variant/20251022202559", "test_data_dir": "../dataset/QuinoaAltitude_SV/gene/multi_class/test/", "time_str": "20251022202601", "train_data_dir": "../dataset/QuinoaAltitude_SV/gene/multi_class/train/", "trunc_type": "right", "variant_bin_size": 4, "vector_dirpath": "../../vectors/Quinoa/lucaone/lucaone-gene/36800000", "vector_fc_size": "null", "vocab_size": 13, "warmup_steps": 1000, "weight": [2.0, 4.0, 1.0, 1.0], "weight_decay": 0.01, "worker_num": 0}
+##################################################
+n_gpu: 1
+##################################################
+Inputs:
+Input Name List: gene,embedding_vector,variant_list
+##################################################
+Encoder Config:
+ {'llm_dirpath': '../llm/models/lucaone/lucaone-gene/checkpoint-step36800000', 'llm_type': 'lucaone', 'llm_version': 'lucaone-gene', 'llm_step': '36800000', 'input_type': 'matrix_variant', 'trunc_type': 'right', 'seq_max_length': 3074, 'atom_seq_max_length': None, 'vector_dirpath': '../../vectors/Quinoa/lucaone/lucaone-gene/36800000', 'matrix_dirpath': '../../matrices/Quinoa/lucaone/lucaone-gene/36800000', 'local_rank': -1, 'max_sentence_length': None, 'max_sentences': None, 'matrix_add_special_token': True, 'embedding_complete': False, 'embedding_complete_seg_overlap': False, 'embedding_fixed_len_a_time': None, 'matrix_embedding_exists': True}
+##################################################
+Model Config:
+ LucaConfig {
+  "alphabet": "gene",
+  "attention_probs_dropout_prob": 0.1,
+  "classifier_activate_func": "gelu",
+  "classifier_dropout_prob": 0.1,
+  "classifier_size": 1024,
+  "cls_token_id": 2,
+  "cross_atten": false,
+  "directionality": "bidi",
+  "emb_activate_func": "gelu",
+  "embedding_input_size": 2560,
+  "fc_activate_func": "gelu",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 2560,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1",
+    "2": "LABEL_2",
+    "3": "LABEL_3"
+  },
+  "ignore_index": -100,
+  "initializer_range": 0.02,
+  "intermediate_size": 4096,
+  "kernel_size": 7,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1,
+    "LABEL_2": 2,
+    "LABEL_3": 3
+  },
+  "layer_norm_eps": 1e-12,
+  "loss_reduction": "mean",
+  "matrix_fc_size": null,
+  "matrix_max_length": 3074,
+  "matrix_pooling_type": "weighted_attention",
+  "max_position_embeddings": 3076,
+  "no_position_embeddings": true,
+  "no_token_embeddings": true,
+  "no_token_type_embeddings": true,
+  "num_attention_heads": 0,
+  "num_hidden_layers": 0,
+  "pad_token_id": 0,
+  "pos_weight": 1.0,
+  "position_embedding_type": "absolute",
+  "self_atten": false,
+  "sep_token_id": 3,
+  "seq_fc_size": null,
+  "seq_max_length": 3074,
+  "seq_pooling_type": "value_attention",
+  "token_dropout": null,
+  "transformers_version": "4.41.2",
+  "type_vocab_size": 2,
+  "use_luca_layer_norm_v2": true,
+  "vector_fc_size": null,
+  "vocab_size": 13,
+  "weight": [
+    2.0,
+    4.0,
+    1.0,
+    1.0
+  ]
+}
+
+##################################################
+Mode Architecture:
+ LucaSingle(
+  (variant_embeddings): Embedding(9, 2560, padding_idx=0)
+  (LayerNorm): LayerNorm((2560,), eps=1e-12, elementwise_affine=True)
+  (dropout): Dropout(p=0.1, inplace=False)
+  (matrix_pooler): GlobalMaskWeightedAttentionPooling1D(2560, bias=False)
+  (hidden_layer): Linear(in_features=2560, out_features=1024, bias=True)
+  (hidden_act): GELU(approximate='none')
+  (classifier): Linear(in_features=1024, out_features=4, bias=True)
+  (output): Softmax(dim=-1)
+  (loss_fct): MaskedCrossEntropyLoss(
+    (criterion): CrossEntropyLoss()
+  )
+)
+##################################################
+Model parameters: 2657284 
+##################################################
+{"total_num": "2.530000M", "total_size": "10.140000MB", "param_sum": "2.530000M", "param_size": "10.140000MB", "buffer_sum": "0.000000M", "buffer_size": "0.000000MB", "trainable_num": "2.534184M", "trainable_size": "10.136734MB"}
+##################################################
+Train dataset len: 70570, batch size: 16, batch num: 4411
+Train dataset t_total: 220550, max_steps: -1
+***** Running training *****
+Train Dataset Num examples = 70570
+Train Dataset Num Epochs = 50
+Logging Steps = 1000
+Saving Steps = -1
+Train Dataset Instantaneous batch size per GPU = 16
+Train Dataset Total train batch size (w. parallel, distributed & accumulation) = 16
+Train Dataset Gradient Accumulation steps = 1
+Train Dataset Total optimization steps = 220550
+##################################################
+Training, Epoch: 0001, Batch: 001000, Sample Num: 16000, Cur Loss: 2.36330986, Cur Avg Loss: 1.87590839, Log Avg loss: 1.87590839, Global Avg Loss: 1.87590839, Time: 0.0611
+Steps: 1000, Updated lr: 0.000100
+Training, Epoch: 0001, Batch: 002000, Sample Num: 32000, Cur Loss: 1.95500159, Cur Avg Loss: 1.80137599, Log Avg loss: 1.72684358, Global Avg Loss: 1.80137599, Time: 0.0652
+Steps: 2000, Updated lr: 0.000100
+Training, Epoch: 0001, Batch: 003000, Sample Num: 48000, Cur Loss: 2.68810844, Cur Avg Loss: 1.73288984, Log Avg loss: 1.59591755, Global Avg Loss: 1.73288984, Time: 0.0658
+Steps: 3000, Updated lr: 0.000099
+Training, Epoch: 0001, Batch: 004000, Sample Num: 64000, Cur Loss: 1.59600925, Cur Avg Loss: 1.69491340, Log Avg loss: 1.58098407, Global Avg Loss: 1.69491340, Time: 0.0651
+Steps: 4000, Updated lr: 0.000099
+***** Running evaluation checkpoint-4411 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-4411 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 283.725799, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 1.328379, "eval_total_loss": 626.995054, "eval_acc": 0.612156, "eval_prec": 0.477655, "eval_recall": 0.47781, "eval_f1": 0.473681, "eval_top2_acc": 0.84044, "eval_top3_acc": 0.926774, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.790947, "eval_pr_auc": 0.489745, "eval_mcc": 0.41319, "eval_sn": 0.47781, "eval_sp": 0.858857, "eval_confusion_matrix": [[335, 127, 625, 52], [67, 77, 169, 27], [540, 309, 2060, 258], [173, 43, 539, 2151]], "update_flag": true, "test_avg_loss": 1.325771, "test_total_loss": 625.764044, "test_acc": 0.624603, "test_prec": 0.496372, "test_recall": 0.49979, "test_f1": 0.492813, "test_top2_acc": 0.841499, "test_top3_acc": 0.923596, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.797206, "test_pr_auc": 0.492066, "test_mcc": 0.430767, "test_sn": 0.49979, "test_sp": 0.862608, "test_confusion_matrix": [[333, 117, 637, 52], [67, 100, 144, 29], [486, 289, 2169, 223], [192, 34, 565, 2115]], "lr": 9.84463675700296e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 1.68103459625389, "train_cur_epoch_loss": 7415.043604075909, "train_cur_epoch_avg_loss": 1.68103459625389, "train_cur_epoch_time": 283.72579860687256, "train_cur_epoch_avg_time": 0.06432233022146283, "epoch": 1, "step": 4411}
+##################################################
+Training, Epoch: 0002, Batch: 000589, Sample Num: 9424, Cur Loss: 1.43496823, Cur Avg Loss: 1.51086333, Log Avg loss: 1.52528851, Global Avg Loss: 1.66098842, Time: 0.0650
+Steps: 5000, Updated lr: 0.000098
+Training, Epoch: 0002, Batch: 001589, Sample Num: 25424, Cur Loss: 1.98870993, Cur Avg Loss: 1.48977499, Log Avg loss: 1.47735395, Global Avg Loss: 1.63038268, Time: 0.0620
+Steps: 6000, Updated lr: 0.000098
+Training, Epoch: 0002, Batch: 002589, Sample Num: 41424, Cur Loss: 0.94968504, Cur Avg Loss: 1.49464693, Log Avg loss: 1.50238846, Global Avg Loss: 1.61209779, Time: 0.0649
+Steps: 7000, Updated lr: 0.000097
+Training, Epoch: 0002, Batch: 003589, Sample Num: 57424, Cur Loss: 2.09738302, Cur Avg Loss: 1.48693092, Log Avg loss: 1.46695418, Global Avg Loss: 1.59395484, Time: 0.0627
+Steps: 8000, Updated lr: 0.000097
+***** Running evaluation checkpoint-8822 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-8822 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 280.887081, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 1.291154, "eval_total_loss": 609.424488, "eval_acc": 0.560779, "eval_prec": 0.510601, "eval_recall": 0.53955, "eval_f1": 0.478274, "eval_top2_acc": 0.808925, "eval_top3_acc": 0.923729, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.814826, "eval_pr_auc": 0.537077, "eval_mcc": 0.414143, "eval_sn": 0.53955, "eval_sp": 0.863044, "eval_confusion_matrix": [[489, 311, 305, 34], [75, 185, 68, 12], [762, 797, 1433, 175], [239, 326, 213, 2128]], "update_flag": true, "test_avg_loss": 1.292246, "test_total_loss": 609.940141, "test_acc": 0.56581, "test_prec": 0.517477, "test_recall": 0.547148, "test_f1": 0.484047, "test_top2_acc": 0.803496, "test_top3_acc": 0.92161, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.816743, "test_pr_auc": 0.534049, "test_mcc": 0.422017, "test_sn": 0.547148, "test_sp": 0.865155, "test_confusion_matrix": [[494, 315, 303, 27], [65, 191, 67, 17], [717, 841, 1466, 143], [266, 303, 215, 2122]], "lr": 9.64372580277841e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 1.5832343960167787, "train_cur_epoch_loss": 6552.250237584114, "train_cur_epoch_avg_loss": 1.4854341957796677, "train_cur_epoch_time": 280.8870806694031, "train_cur_epoch_avg_time": 0.0636787759395609, "epoch": 2, "step": 8822}
+##################################################
+Training, Epoch: 0003, Batch: 000178, Sample Num: 2848, Cur Loss: 1.36601710, Cur Avg Loss: 1.39286874, Log Avg loss: 1.46358579, Global Avg Loss: 1.57946939, Time: 0.0616
+Steps: 9000, Updated lr: 0.000096
+Training, Epoch: 0003, Batch: 001178, Sample Num: 18848, Cur Loss: 1.16744149, Cur Avg Loss: 1.40013366, Log Avg loss: 1.40142682, Global Avg Loss: 1.56166513, Time: 0.0626
+Steps: 10000, Updated lr: 0.000096
+Training, Epoch: 0003, Batch: 002178, Sample Num: 34848, Cur Loss: 1.68128443, Cur Avg Loss: 1.39185887, Log Avg loss: 1.38211116, Global Avg Loss: 1.54534204, Time: 0.0619
+Steps: 11000, Updated lr: 0.000095
+Training, Epoch: 0003, Batch: 003178, Sample Num: 50848, Cur Loss: 0.85961282, Cur Avg Loss: 1.39944736, Log Avg loss: 1.41597510, Global Avg Loss: 1.53456146, Time: 0.0644
+Steps: 12000, Updated lr: 0.000095
+Training, Epoch: 0003, Batch: 004178, Sample Num: 66848, Cur Loss: 1.46854198, Cur Avg Loss: 1.39438361, Log Avg loss: 1.37829102, Global Avg Loss: 1.52254066, Time: 0.0611
+Steps: 13000, Updated lr: 0.000095
+***** Running evaluation checkpoint-13233 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-13233 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 279.801234, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 1.161957, "eval_total_loss": 548.44383, "eval_acc": 0.65188, "eval_prec": 0.539324, "eval_recall": 0.58552, "eval_f1": 0.539326, "eval_top2_acc": 0.857124, "eval_top3_acc": 0.958157, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.850019, "eval_pr_auc": 0.590674, "eval_mcc": 0.503056, "eval_sn": 0.58552, "eval_sp": 0.884667, "eval_confusion_matrix": [[505, 222, 323, 89], [69, 165, 75, 31], [667, 441, 1767, 292], [138, 119, 163, 2486]], "update_flag": true, "test_avg_loss": 1.167137, "test_total_loss": 550.888816, "test_acc": 0.657177, "test_prec": 0.547119, "test_recall": 0.595502, "test_f1": 0.547159, "test_top2_acc": 0.852754, "test_top3_acc": 0.955641, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.84996, "test_pr_auc": 0.588426, "test_mcc": 0.509671, "test_sn": 0.595502, "test_sp": 0.886219, "test_confusion_matrix": [[514, 221, 309, 95], [59, 174, 73, 34], [591, 461, 1838, 277], [140, 136, 193, 2437]], "lr": 9.44281484855386e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 1.5196807862120871, "train_cur_epoch_loss": 6142.642002284527, "train_cur_epoch_avg_loss": 1.392573566602704, "train_cur_epoch_time": 279.8012342453003, "train_cur_epoch_avg_time": 0.06343260808100211, "epoch": 3, "step": 13233}
+##################################################
+Training, Epoch: 0004, Batch: 000767, Sample Num: 12272, Cur Loss: 1.92381680, Cur Avg Loss: 1.34333240, Log Avg loss: 1.34724322, Global Avg Loss: 1.51001941, Time: 0.0607
+Steps: 14000, Updated lr: 0.000094
+Training, Epoch: 0004, Batch: 001767, Sample Num: 28272, Cur Loss: 1.04674625, Cur Avg Loss: 1.32601269, Log Avg loss: 1.31272848, Global Avg Loss: 1.49686668, Time: 0.0612
+Steps: 15000, Updated lr: 0.000094
+Training, Epoch: 0004, Batch: 002767, Sample Num: 44272, Cur Loss: 1.91096032, Cur Avg Loss: 1.31710539, Log Avg loss: 1.30136619, Global Avg Loss: 1.48464790, Time: 0.0733
+Steps: 16000, Updated lr: 0.000093
+Training, Epoch: 0004, Batch: 003767, Sample Num: 60272, Cur Loss: 0.69236308, Cur Avg Loss: 1.30242676, Log Avg loss: 1.26181098, Global Avg Loss: 1.47153985, Time: 0.0648
+Steps: 17000, Updated lr: 0.000093
+***** Running evaluation checkpoint-17644 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-17644 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 276.735623, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 1.107219, "eval_total_loss": 522.607583, "eval_acc": 0.724179, "eval_prec": 0.605656, "eval_recall": 0.575938, "eval_f1": 0.586718, "eval_top2_acc": 0.890493, "eval_top3_acc": 0.964248, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.869056, "eval_pr_auc": 0.63026, "eval_mcc": 0.573794, "eval_sn": 0.575938, "eval_sp": 0.895329, "eval_confusion_matrix": [[422, 74, 610, 33], [57, 104, 163, 16], [350, 94, 2595, 128], [116, 15, 427, 2348]], "update_flag": true, "test_avg_loss": 1.136401, "test_total_loss": 536.381337, "test_acc": 0.72643, "test_prec": 0.600569, "test_recall": 0.568926, "test_f1": 0.579711, "test_top2_acc": 0.886123, "test_top3_acc": 0.961997, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.86263, "test_pr_auc": 0.617784, "test_mcc": 0.577204, "test_sn": 0.568926, "test_sp": 0.895703, "test_confusion_matrix": [[419, 75, 613, 32], [38, 92, 191, 19], [317, 98, 2635, 117], [118, 25, 423, 2340]], "lr": 9.24190389432931e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 1.4648344928199837, "train_cur_epoch_loss": 5735.603947371244, "train_cur_epoch_avg_loss": 1.3002956126436735, "train_cur_epoch_time": 276.735622882843, "train_cur_epoch_avg_time": 0.0627376157068336, "epoch": 4, "step": 17644}
+##################################################
+Training, Epoch: 0005, Batch: 000356, Sample Num: 5696, Cur Loss: 0.71553123, Cur Avg Loss: 1.23588189, Log Avg loss: 1.26933631, Global Avg Loss: 1.46030632, Time: 0.0654
+Steps: 18000, Updated lr: 0.000092
+Training, Epoch: 0005, Batch: 001356, Sample Num: 21696, Cur Loss: 1.63638687, Cur Avg Loss: 1.24332698, Log Avg loss: 1.24597743, Global Avg Loss: 1.44902585, Time: 0.0614
+Steps: 19000, Updated lr: 0.000092
+Training, Epoch: 0005, Batch: 002356, Sample Num: 37696, Cur Loss: 2.04278731, Cur Avg Loss: 1.22145044, Log Avg loss: 1.19178586, Global Avg Loss: 1.43616385, Time: 0.0614
+Steps: 20000, Updated lr: 0.000091
+Training, Epoch: 0005, Batch: 003356, Sample Num: 53696, Cur Loss: 0.74337995, Cur Avg Loss: 1.21661191, Log Avg loss: 1.20521232, Global Avg Loss: 1.42516616, Time: 0.0644
+Steps: 21000, Updated lr: 0.000091
+Training, Epoch: 0005, Batch: 004356, Sample Num: 69696, Cur Loss: 0.78167474, Cur Avg Loss: 1.20519663, Log Avg loss: 1.16688695, Global Avg Loss: 1.41342620, Time: 0.0652
+Steps: 22000, Updated lr: 0.000090
+***** Running evaluation checkpoint-22055 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-22055 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 279.906502, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 1.037309, "eval_total_loss": 489.60976, "eval_acc": 0.70339, "eval_prec": 0.588574, "eval_recall": 0.644986, "eval_f1": 0.593538, "eval_top2_acc": 0.877516, "eval_top3_acc": 0.962394, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.880962, "eval_pr_auc": 0.647375, "eval_mcc": 0.573522, "eval_sn": 0.644986, "eval_sp": 0.90297, "eval_confusion_matrix": [[575, 204, 308, 52], [65, 194, 64, 17], [545, 408, 2073, 141], [168, 103, 165, 2470]], "update_flag": true, "test_avg_loss": 1.061518, "test_total_loss": 501.036382, "test_acc": 0.698093, "test_prec": 0.583502, "test_recall": 0.636312, "test_f1": 0.587478, "test_top2_acc": 0.872617, "test_top3_acc": 0.961467, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.875767, "test_pr_auc": 0.635354, "test_mcc": 0.565606, "test_sn": 0.636312, "test_sp": 0.901, "test_confusion_matrix": [[570, 207, 318, 44], [58, 187, 77, 18], [550, 400, 2076, 141], [181, 114, 172, 2439]], "lr": 9.04099294010476e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 1.413002401193073, "train_cur_epoch_loss": 5318.228166997433, "train_cur_epoch_avg_loss": 1.2056740346854302, "train_cur_epoch_time": 279.90650248527527, "train_cur_epoch_avg_time": 0.06345647301865229, "epoch": 5, "step": 22055}
+##################################################
+Training, Epoch: 0006, Batch: 000945, Sample Num: 15120, Cur Loss: 0.74842346, Cur Avg Loss: 1.15538706, Log Avg loss: 1.16023242, Global Avg Loss: 1.40241777, Time: 0.0619
+Steps: 23000, Updated lr: 0.000090
+Training, Epoch: 0006, Batch: 001945, Sample Num: 31120, Cur Loss: 1.12322807, Cur Avg Loss: 1.14419293, Log Avg loss: 1.13361449, Global Avg Loss: 1.39121763, Time: 0.0618
+Steps: 24000, Updated lr: 0.000090
+Training, Epoch: 0006, Batch: 002945, Sample Num: 47120, Cur Loss: 0.92527556, Cur Avg Loss: 1.13856419, Log Avg loss: 1.12761629, Global Avg Loss: 1.38067358, Time: 0.0624
+Steps: 25000, Updated lr: 0.000089
+Training, Epoch: 0006, Batch: 003945, Sample Num: 63120, Cur Loss: 2.95055580, Cur Avg Loss: 1.12802634, Log Avg loss: 1.09699239, Global Avg Loss: 1.36976276, Time: 0.0646
+Steps: 26000, Updated lr: 0.000089
+***** Running evaluation checkpoint-26466 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-26466 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 277.369857, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.980227, "eval_total_loss": 462.666971, "eval_acc": 0.748411, "eval_prec": 0.624991, "eval_recall": 0.652641, "eval_f1": 0.619489, "eval_top2_acc": 0.892479, "eval_top3_acc": 0.965837, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.897381, "eval_pr_auc": 0.691532, "eval_mcc": 0.620864, "eval_sn": 0.652641, "eval_sp": 0.911235, "eval_confusion_matrix": [[440, 190, 463, 46], [36, 193, 94, 17], [227, 293, 2486, 161], [78, 85, 210, 2533]], "update_flag": true, "test_avg_loss": 1.024459, "test_total_loss": 483.544533, "test_acc": 0.744439, "test_prec": 0.617142, "test_recall": 0.639292, "test_f1": 0.61148, "test_top2_acc": 0.885328, "test_top3_acc": 0.963586, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.888311, "test_pr_auc": 0.674106, "test_mcc": 0.614273, "test_sn": 0.639292, "test_sp": 0.909644, "test_confusion_matrix": [[438, 177, 472, 52], [44, 177, 104, 15], [232, 293, 2502, 140], [87, 88, 226, 2505]], "lr": 8.84008198588021e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 1.3654694042084736, "train_cur_epoch_loss": 4974.745293468237, "train_cur_epoch_avg_loss": 1.1278044192854766, "train_cur_epoch_time": 277.36985659599304, "train_cur_epoch_avg_time": 0.06288140027113875, "epoch": 6, "step": 26466}
+##################################################
+Training, Epoch: 0007, Batch: 000534, Sample Num: 8544, Cur Loss: 0.93340564, Cur Avg Loss: 1.07506712, Log Avg loss: 1.09876721, Global Avg Loss: 1.35972589, Time: 0.0770
+Steps: 27000, Updated lr: 0.000088
+Training, Epoch: 0007, Batch: 001534, Sample Num: 24544, Cur Loss: 1.07469273, Cur Avg Loss: 1.05721468, Log Avg loss: 1.04768147, Global Avg Loss: 1.34858145, Time: 0.0643
+Steps: 28000, Updated lr: 0.000088
+Training, Epoch: 0007, Batch: 002534, Sample Num: 40544, Cur Loss: 1.46140480, Cur Avg Loss: 1.04487945, Log Avg loss: 1.02595722, Global Avg Loss: 1.33745648, Time: 0.0607
+Steps: 29000, Updated lr: 0.000087
+Training, Epoch: 0007, Batch: 003534, Sample Num: 56544, Cur Loss: 1.31757283, Cur Avg Loss: 1.04121365, Log Avg loss: 1.03192451, Global Avg Loss: 1.32727208, Time: 0.0597
+Steps: 30000, Updated lr: 0.000087
+***** Running evaluation checkpoint-30877 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-30877 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 276.100482, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.94918, "eval_total_loss": 448.012849, "eval_acc": 0.770789, "eval_prec": 0.644669, "eval_recall": 0.665923, "eval_f1": 0.653718, "eval_top2_acc": 0.917373, "eval_top3_acc": 0.975106, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.905502, "eval_pr_auc": 0.704058, "eval_mcc": 0.652595, "eval_sn": 0.665923, "eval_sp": 0.919327, "eval_confusion_matrix": [[616, 100, 351, 72], [72, 154, 90, 24], [427, 148, 2405, 187], [119, 19, 122, 2646]], "update_flag": true, "test_avg_loss": 0.979058, "test_total_loss": 462.115212, "test_acc": 0.772643, "test_prec": 0.648658, "test_recall": 0.670125, "test_f1": 0.657814, "test_top2_acc": 0.908236, "test_top3_acc": 0.975238, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.900258, "test_pr_auc": 0.699169, "test_mcc": 0.65494, "test_sn": 0.670125, "test_sp": 0.919773, "test_confusion_matrix": [[616, 90, 358, 75], [60, 159, 100, 21], [426, 145, 2440, 156], [118, 32, 136, 2620]], "lr": 8.63917103165566e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 1.3194050465577716, "train_cur_epoch_loss": 4600.756370782852, "train_cur_epoch_avg_loss": 1.0430189006535597, "train_cur_epoch_time": 276.1004819869995, "train_cur_epoch_avg_time": 0.06259362547880289, "epoch": 7, "step": 30877}
+##################################################
+Training, Epoch: 0008, Batch: 000123, Sample Num: 1968, Cur Loss: 2.48568106, Cur Avg Loss: 0.92746455, Log Avg loss: 1.03518547, Global Avg Loss: 1.31784993, Time: 0.0619
+Steps: 31000, Updated lr: 0.000086
+Training, Epoch: 0008, Batch: 001123, Sample Num: 17968, Cur Loss: 1.16579092, Cur Avg Loss: 0.97472872, Log Avg loss: 0.98054221, Global Avg Loss: 1.30730906, Time: 0.0614
+Steps: 32000, Updated lr: 0.000086
+Training, Epoch: 0008, Batch: 002123, Sample Num: 33968, Cur Loss: 1.20251346, Cur Avg Loss: 0.96459809, Log Avg loss: 0.95322139, Global Avg Loss: 1.29657913, Time: 0.0621
+Steps: 33000, Updated lr: 0.000085
+Training, Epoch: 0008, Batch: 003123, Sample Num: 49968, Cur Loss: 0.60428977, Cur Avg Loss: 0.96889119, Log Avg loss: 0.97800544, Global Avg Loss: 1.28720932, Time: 0.0625
+Steps: 34000, Updated lr: 0.000085
+Training, Epoch: 0008, Batch: 004123, Sample Num: 65968, Cur Loss: 0.67863435, Cur Avg Loss: 0.96864008, Log Avg loss: 0.96785588, Global Avg Loss: 1.27808493, Time: 0.0623
+Steps: 35000, Updated lr: 0.000085
+***** Running evaluation checkpoint-35288 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-35288 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 276.348996, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.918013, "eval_total_loss": 433.30216, "eval_acc": 0.744968, "eval_prec": 0.635123, "eval_recall": 0.68995, "eval_f1": 0.62951, "eval_top2_acc": 0.893273, "eval_top3_acc": 0.970604, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.912083, "eval_pr_auc": 0.723102, "eval_mcc": 0.63508, "eval_sn": 0.68995, "eval_sp": 0.918764, "eval_confusion_matrix": [[559, 289, 245, 46], [40, 227, 59, 14], [306, 496, 2262, 103], [104, 107, 117, 2578]], "update_flag": false, "test_avg_loss": 0.952074, "test_total_loss": 449.379056, "test_acc": 0.744306, "test_prec": 0.636352, "test_recall": 0.69467, "test_f1": 0.632067, "test_top2_acc": 0.881488, "test_top3_acc": 0.967558, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.905158, "test_pr_auc": 0.712957, "test_mcc": 0.63425, "test_sn": 0.69467, "test_sp": 0.918375, "test_confusion_matrix": [[573, 263, 258, 45], [40, 232, 54, 14], [323, 492, 2257, 95], [94, 128, 125, 2559]], "lr": 8.43826007743111e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 1.275603149967098, "train_cur_epoch_loss": 4274.214333474636, "train_cur_epoch_avg_loss": 0.9689898738323818, "train_cur_epoch_time": 276.34899640083313, "train_cur_epoch_avg_time": 0.06264996517815305, "epoch": 8, "step": 35288}
+##################################################
+Training, Epoch: 0009, Batch: 000712, Sample Num: 11392, Cur Loss: 1.34272623, Cur Avg Loss: 0.90743484, Log Avg loss: 0.92660488, Global Avg Loss: 1.26832160, Time: 0.0624
+Steps: 36000, Updated lr: 0.000084
+Training, Epoch: 0009, Batch: 001712, Sample Num: 27392, Cur Loss: 0.34685245, Cur Avg Loss: 0.90150830, Log Avg loss: 0.89728860, Global Avg Loss: 1.25829368, Time: 0.0602
+Steps: 37000, Updated lr: 0.000084
+Training, Epoch: 0009, Batch: 002712, Sample Num: 43392, Cur Loss: 0.49861580, Cur Avg Loss: 0.90430517, Log Avg loss: 0.90909341, Global Avg Loss: 1.24910420, Time: 0.0612
+Steps: 38000, Updated lr: 0.000083
+Training, Epoch: 0009, Batch: 003712, Sample Num: 59392, Cur Loss: 0.89320874, Cur Avg Loss: 0.90361708, Log Avg loss: 0.90175100, Global Avg Loss: 1.24019771, Time: 0.0617
+Steps: 39000, Updated lr: 0.000083
+***** Running evaluation checkpoint-39699 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-39699 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 275.131780, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.864428, "eval_total_loss": 408.010217, "eval_acc": 0.784825, "eval_prec": 0.660105, "eval_recall": 0.71483, "eval_f1": 0.675908, "eval_top2_acc": 0.912076, "eval_top3_acc": 0.974311, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.919828, "eval_pr_auc": 0.738601, "eval_mcc": 0.681853, "eval_sn": 0.71483, "eval_sp": 0.928532, "eval_confusion_matrix": [[695, 152, 253, 39], [61, 199, 62, 18], [398, 233, 2401, 135], [146, 47, 81, 2632]], "update_flag": true, "test_avg_loss": 0.899239, "test_total_loss": 424.44099, "test_acc": 0.783104, "test_prec": 0.659185, "test_recall": 0.713264, "test_f1": 0.674994, "test_top2_acc": 0.90625, "test_top3_acc": 0.972855, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.913863, "test_pr_auc": 0.734649, "test_mcc": 0.679114, "test_sn": 0.713264, "test_sp": 0.927693, "test_confusion_matrix": [[701, 131, 265, 42], [56, 197, 69, 18], [418, 238, 2394, 117], [132, 60, 92, 2622]], "lr": 8.23734912320656e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 1.2346856763614131, "train_cur_epoch_loss": 4002.3027098327875, "train_cur_epoch_avg_loss": 0.9073458875159346, "train_cur_epoch_time": 275.1317799091339, "train_cur_epoch_avg_time": 0.062374014941993634, "epoch": 9, "step": 39699}
+##################################################
+Training, Epoch: 0010, Batch: 000301, Sample Num: 4816, Cur Loss: 1.04855454, Cur Avg Loss: 0.83658405, Log Avg loss: 0.89988789, Global Avg Loss: 1.23168996, Time: 0.0619
+Steps: 40000, Updated lr: 0.000082
+Training, Epoch: 0010, Batch: 001301, Sample Num: 20816, Cur Loss: 0.91940004, Cur Avg Loss: 0.86224369, Log Avg loss: 0.86996724, Global Avg Loss: 1.22286746, Time: 0.0660
+Steps: 41000, Updated lr: 0.000082
+Training, Epoch: 0010, Batch: 002301, Sample Num: 36816, Cur Loss: 0.87054300, Cur Avg Loss: 0.84531297, Log Avg loss: 0.82328610, Global Avg Loss: 1.21335361, Time: 0.0612
+Steps: 42000, Updated lr: 0.000081
+Training, Epoch: 0010, Batch: 003301, Sample Num: 52816, Cur Loss: 1.30237460, Cur Avg Loss: 0.84472732, Log Avg loss: 0.84337974, Global Avg Loss: 1.20474957, Time: 0.0641
+Steps: 43000, Updated lr: 0.000081
+Training, Epoch: 0010, Batch: 004301, Sample Num: 68816, Cur Loss: 0.65600115, Cur Avg Loss: 0.84128510, Log Avg loss: 0.82992236, Global Avg Loss: 1.19623077, Time: 0.0625
+Steps: 44000, Updated lr: 0.000080
+***** Running evaluation checkpoint-44110 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-44110 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 278.583340, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.839246, "eval_total_loss": 396.123995, "eval_acc": 0.797272, "eval_prec": 0.672544, "eval_recall": 0.72664, "eval_f1": 0.684774, "eval_top2_acc": 0.912209, "eval_top3_acc": 0.977092, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.923991, "eval_pr_auc": 0.752158, "eval_mcc": 0.699727, "eval_sn": 0.72664, "eval_sp": 0.933056, "eval_confusion_matrix": [[684, 173, 251, 31], [42, 208, 76, 14], [319, 284, 2493, 71], [117, 51, 102, 2636]], "update_flag": true, "test_avg_loss": 0.870155, "test_total_loss": 410.713162, "test_acc": 0.791843, "test_prec": 0.668707, "test_recall": 0.72105, "test_f1": 0.680023, "test_top2_acc": 0.911547, "test_top3_acc": 0.974444, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.919924, "test_pr_auc": 0.748082, "test_mcc": 0.690456, "test_sn": 0.72105, "test_sp": 0.93028, "test_confusion_matrix": [[654, 166, 282, 37], [46, 211, 68, 15], [305, 278, 2494, 90], [103, 60, 122, 2621]], "lr": 8.03643816898201e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 1.1954253601726559, "train_cur_epoch_loss": 3714.4259713441133, "train_cur_epoch_avg_loss": 0.8420825144738412, "train_cur_epoch_time": 278.5833396911621, "train_cur_epoch_avg_time": 0.06315650412404492, "epoch": 10, "step": 44110}
+##################################################
+Training, Epoch: 0011, Batch: 000890, Sample Num: 14240, Cur Loss: 1.25862718, Cur Avg Loss: 0.77660963, Log Avg loss: 0.78724132, Global Avg Loss: 1.18714212, Time: 0.0615
+Steps: 45000, Updated lr: 0.000080
+Training, Epoch: 0011, Batch: 001890, Sample Num: 30240, Cur Loss: 0.62248957, Cur Avg Loss: 0.78916545, Log Avg loss: 0.80034012, Global Avg Loss: 1.17873338, Time: 0.0632
+Steps: 46000, Updated lr: 0.000080
+Training, Epoch: 0011, Batch: 002890, Sample Num: 46240, Cur Loss: 1.11409068, Cur Avg Loss: 0.78523104, Log Avg loss: 0.77779500, Global Avg Loss: 1.17020277, Time: 0.0600
+Steps: 47000, Updated lr: 0.000079
+Training, Epoch: 0011, Batch: 003890, Sample Num: 62240, Cur Loss: 0.65887845, Cur Avg Loss: 0.78490224, Log Avg loss: 0.78395201, Global Avg Loss: 1.16215588, Time: 0.0615
+Steps: 48000, Updated lr: 0.000079
+***** Running evaluation checkpoint-48521 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-48521 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 276.980925, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.816236, "eval_total_loss": 385.263442, "eval_acc": 0.799788, "eval_prec": 0.67583, "eval_recall": 0.73834, "eval_f1": 0.691075, "eval_top2_acc": 0.911811, "eval_top3_acc": 0.979078, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.92968, "eval_pr_auc": 0.769654, "eval_mcc": 0.706504, "eval_sn": 0.73834, "eval_sp": 0.935174, "eval_confusion_matrix": [[731, 176, 185, 47], [57, 213, 53, 17], [375, 279, 2416, 97], [109, 42, 75, 2680]], "update_flag": true, "test_avg_loss": 0.850692, "test_total_loss": 401.526832, "test_acc": 0.791446, "test_prec": 0.669559, "test_recall": 0.733311, "test_f1": 0.68574, "test_top2_acc": 0.910355, "test_top3_acc": 0.976827, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.925325, "test_pr_auc": 0.761715, "test_mcc": 0.692907, "test_sn": 0.733311, "test_sp": 0.931355, "test_confusion_matrix": [[694, 168, 223, 54], [48, 221, 55, 16], [398, 260, 2397, 112], [101, 51, 89, 2665]], "lr": 7.835527214757458e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 1.1585895184995878, "train_cur_epoch_loss": 3485.7093899026513, "train_cur_epoch_avg_loss": 0.7902311017689075, "train_cur_epoch_time": 276.9809250831604, "train_cur_epoch_avg_time": 0.06279322717822725, "epoch": 11, "step": 48521}
+##################################################
+Training, Epoch: 0012, Batch: 000479, Sample Num: 7664, Cur Loss: 1.05808306, Cur Avg Loss: 0.70765684, Log Avg loss: 0.77140731, Global Avg Loss: 1.15418142, Time: 0.0615
+Steps: 49000, Updated lr: 0.000078
+Training, Epoch: 0012, Batch: 001479, Sample Num: 23664, Cur Loss: 0.79351950, Cur Avg Loss: 0.71954194, Log Avg loss: 0.72523491, Global Avg Loss: 1.14560249, Time: 0.0615
+Steps: 50000, Updated lr: 0.000078
+Training, Epoch: 0012, Batch: 002479, Sample Num: 39664, Cur Loss: 0.40000075, Cur Avg Loss: 0.72589783, Log Avg loss: 0.73529818, Global Avg Loss: 1.13755731, Time: 0.0614
+Steps: 51000, Updated lr: 0.000077
+Training, Epoch: 0012, Batch: 003479, Sample Num: 55664, Cur Loss: 0.63991779, Cur Avg Loss: 0.73437225, Log Avg loss: 0.75538035, Global Avg Loss: 1.13020775, Time: 0.0604
+Steps: 52000, Updated lr: 0.000077
+***** Running evaluation checkpoint-52932 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-52932 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 276.151432, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.818283, "eval_total_loss": 386.229486, "eval_acc": 0.813162, "eval_prec": 0.689505, "eval_recall": 0.742906, "eval_f1": 0.703188, "eval_top2_acc": 0.919624, "eval_top3_acc": 0.978284, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.93128, "eval_pr_auc": 0.769236, "eval_mcc": 0.72173, "eval_sn": 0.742906, "eval_sp": 0.938049, "eval_confusion_matrix": [[703, 163, 238, 35], [50, 214, 65, 11], [282, 259, 2562, 64], [109, 34, 101, 2662]], "update_flag": true, "test_avg_loss": 0.841917, "test_total_loss": 397.384945, "test_acc": 0.806409, "test_prec": 0.685055, "test_recall": 0.741135, "test_f1": 0.698894, "test_top2_acc": 0.916711, "test_top3_acc": 0.977754, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.928774, "test_pr_auc": 0.771726, "test_mcc": 0.711446, "test_sn": 0.741135, "test_sp": 0.935277, "test_confusion_matrix": [[673, 164, 269, 33], [39, 224, 64, 13], [301, 248, 2544, 74], [103, 47, 107, 2649]], "lr": 7.634616260532908e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 1.1233383690511718, "train_cur_epoch_loss": 3244.624523498118, "train_cur_epoch_avg_loss": 0.7355757251185939, "train_cur_epoch_time": 276.1514320373535, "train_cur_epoch_avg_time": 0.06260517615900102, "epoch": 12, "step": 52932}
+##################################################
+Training, Epoch: 0013, Batch: 000068, Sample Num: 1088, Cur Loss: 0.57796037, Cur Avg Loss: 0.70732674, Log Avg loss: 0.73784167, Global Avg Loss: 1.12280462, Time: 0.0779
+Steps: 53000, Updated lr: 0.000076
+Training, Epoch: 0013, Batch: 001068, Sample Num: 17088, Cur Loss: 0.28768790, Cur Avg Loss: 0.67509103, Log Avg loss: 0.67289900, Global Avg Loss: 1.11447303, Time: 0.0610
+Steps: 54000, Updated lr: 0.000076
+Training, Epoch: 0013, Batch: 002068, Sample Num: 33088, Cur Loss: 0.80105841, Cur Avg Loss: 0.68557959, Log Avg loss: 0.69678138, Global Avg Loss: 1.10687864, Time: 0.0748
+Steps: 55000, Updated lr: 0.000075
+Training, Epoch: 0013, Batch: 003068, Sample Num: 49088, Cur Loss: 0.34542918, Cur Avg Loss: 0.68818516, Log Avg loss: 0.69357348, Global Avg Loss: 1.09949819, Time: 0.0630
+Steps: 56000, Updated lr: 0.000075
+Training, Epoch: 0013, Batch: 004068, Sample Num: 65088, Cur Loss: 0.84995943, Cur Avg Loss: 0.69107334, Log Avg loss: 0.69993427, Global Avg Loss: 1.09248830, Time: 0.0630
+Steps: 57000, Updated lr: 0.000074
+***** Running evaluation checkpoint-57343 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-57343 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 277.525402, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.806926, "eval_total_loss": 380.868956, "eval_acc": 0.823358, "eval_prec": 0.699028, "eval_recall": 0.744636, "eval_f1": 0.710442, "eval_top2_acc": 0.923199, "eval_top3_acc": 0.980005, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.934845, "eval_pr_auc": 0.780433, "eval_mcc": 0.734909, "eval_sn": 0.744636, "eval_sp": 0.940709, "eval_confusion_matrix": [[683, 172, 236, 48], [45, 211, 70, 14], [262, 221, 2601, 83], [69, 33, 81, 2723]], "update_flag": true, "test_avg_loss": 0.835805, "test_total_loss": 394.500083, "test_acc": 0.816472, "test_prec": 0.69413, "test_recall": 0.737621, "test_f1": 0.705464, "test_top2_acc": 0.92161, "test_top3_acc": 0.978416, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.93126, "test_pr_auc": 0.781014, "test_mcc": 0.723451, "test_sn": 0.737621, "test_sp": 0.937298, "test_confusion_matrix": [[653, 157, 269, 60], [40, 213, 67, 20], [273, 212, 2578, 104], [66, 29, 89, 2722]], "lr": 7.433705306308358e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 1.0899860525622218, "train_cur_epoch_loss": 3042.523661458865, "train_cur_epoch_avg_loss": 0.6897582546948231, "train_cur_epoch_time": 277.5254020690918, "train_cur_epoch_avg_time": 0.0629166633573094, "epoch": 13, "step": 57343}
+##################################################
+Training, Epoch: 0014, Batch: 000657, Sample Num: 10512, Cur Loss: 0.82422167, Cur Avg Loss: 0.62046667, Log Avg loss: 0.63888392, Global Avg Loss: 1.08466753, Time: 0.0618
+Steps: 58000, Updated lr: 0.000074
+Training, Epoch: 0014, Batch: 001657, Sample Num: 26512, Cur Loss: 0.36737031, Cur Avg Loss: 0.62835073, Log Avg loss: 0.63353056, Global Avg Loss: 1.07702114, Time: 0.0599
+Steps: 59000, Updated lr: 0.000074
+Training, Epoch: 0014, Batch: 002657, Sample Num: 42512, Cur Loss: 0.79133469, Cur Avg Loss: 0.63746601, Log Avg loss: 0.65257003, Global Avg Loss: 1.06994696, Time: 0.0608
+Steps: 60000, Updated lr: 0.000073
+Training, Epoch: 0014, Batch: 003657, Sample Num: 58512, Cur Loss: 0.49501723, Cur Avg Loss: 0.64419830, Log Avg loss: 0.66208598, Global Avg Loss: 1.06326071, Time: 0.0622
+Steps: 61000, Updated lr: 0.000073
+***** Running evaluation checkpoint-61754 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-61754 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 275.442397, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.793646, "eval_total_loss": 374.60084, "eval_acc": 0.831435, "eval_prec": 0.711897, "eval_recall": 0.760329, "eval_f1": 0.725407, "eval_top2_acc": 0.926907, "eval_top3_acc": 0.983713, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.936099, "eval_pr_auc": 0.785876, "eval_mcc": 0.746721, "eval_sn": 0.760329, "eval_sp": 0.943281, "eval_confusion_matrix": [[715, 165, 231, 28], [42, 221, 64, 13], [256, 198, 2646, 67], [74, 31, 104, 2697]], "update_flag": true, "test_avg_loss": 0.819769, "test_total_loss": 386.931094, "test_acc": 0.825874, "test_prec": 0.705994, "test_recall": 0.752259, "test_f1": 0.719496, "test_top2_acc": 0.92545, "test_top3_acc": 0.980138, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.932923, "test_pr_auc": 0.789367, "test_mcc": 0.738064, "test_sn": 0.752259, "test_sp": 0.941009, "test_confusion_matrix": [[710, 140, 255, 34], [46, 215, 66, 13], [267, 207, 2631, 62], [78, 37, 110, 2681]], "lr": 7.232794352083808e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 1.0584094783209903, "train_cur_epoch_loss": 2857.948712158948, "train_cur_epoch_avg_loss": 0.6479140131849803, "train_cur_epoch_time": 275.44239687919617, "train_cur_epoch_avg_time": 0.062444433661119056, "epoch": 14, "step": 61754}
+##################################################
+Training, Epoch: 0015, Batch: 000246, Sample Num: 3936, Cur Loss: 0.72458130, Cur Avg Loss: 0.55766601, Log Avg loss: 0.63930138, Global Avg Loss: 1.05642266, Time: 0.0621
+Steps: 62000, Updated lr: 0.000072
+Training, Epoch: 0015, Batch: 001246, Sample Num: 19936, Cur Loss: 1.53805733, Cur Avg Loss: 0.59470956, Log Avg loss: 0.60382227, Global Avg Loss: 1.04923852, Time: 0.0631
+Steps: 63000, Updated lr: 0.000072
+Training, Epoch: 0015, Batch: 002246, Sample Num: 35936, Cur Loss: 0.26746476, Cur Avg Loss: 0.60201680, Log Avg loss: 0.61112161, Global Avg Loss: 1.04239295, Time: 0.0633
+Steps: 64000, Updated lr: 0.000071
+Training, Epoch: 0015, Batch: 003246, Sample Num: 51936, Cur Loss: 0.47923654, Cur Avg Loss: 0.60846602, Log Avg loss: 0.62295098, Global Avg Loss: 1.03593999, Time: 0.0682
+Steps: 65000, Updated lr: 0.000071
+Training, Epoch: 0015, Batch: 004246, Sample Num: 67936, Cur Loss: 0.39244443, Cur Avg Loss: 0.61287923, Log Avg loss: 0.62720451, Global Avg Loss: 1.02974703, Time: 0.0623
+Steps: 66000, Updated lr: 0.000070
+***** Running evaluation checkpoint-66165 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-66165 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 279.791766, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.800864, "eval_total_loss": 378.008017, "eval_acc": 0.825212, "eval_prec": 0.702375, "eval_recall": 0.760305, "eval_f1": 0.720654, "eval_top2_acc": 0.926642, "eval_top3_acc": 0.981992, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.937295, "eval_pr_auc": 0.787597, "eval_mcc": 0.740571, "eval_sn": 0.760305, "eval_sp": 0.942887, "eval_confusion_matrix": [[759, 152, 194, 34], [55, 217, 55, 13], [360, 204, 2541, 62], [96, 28, 67, 2715]], "update_flag": false, "test_avg_loss": 0.82688, "test_total_loss": 390.287578, "test_acc": 0.822034, "test_prec": 0.701699, "test_recall": 0.762468, "test_f1": 0.72056, "test_top2_acc": 0.926112, "test_top3_acc": 0.980138, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.934903, "test_pr_auc": 0.792508, "test_mcc": 0.736068, "test_sn": 0.762468, "test_sp": 0.941541, "test_confusion_matrix": [[760, 136, 211, 32], [56, 223, 48, 13], [355, 225, 2513, 74], [92, 29, 73, 2712]], "lr": 7.031883397859258e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 1.0286958311191707, "train_cur_epoch_loss": 2702.640741765499, "train_cur_epoch_avg_loss": 0.6127047702936974, "train_cur_epoch_time": 279.7917664051056, "train_cur_epoch_avg_time": 0.06343046166517924, "epoch": 15, "step": 66165}
+##################################################
+Training, Epoch: 0016, Batch: 000835, Sample Num: 13360, Cur Loss: 0.30458176, Cur Avg Loss: 0.56137574, Log Avg loss: 0.56910427, Global Avg Loss: 1.02287177, Time: 0.0616
+Steps: 67000, Updated lr: 0.000070
+Training, Epoch: 0016, Batch: 001835, Sample Num: 29360, Cur Loss: 0.85146004, Cur Avg Loss: 0.57154487, Log Avg loss: 0.58003610, Global Avg Loss: 1.01635948, Time: 0.0620
+Steps: 68000, Updated lr: 0.000069
+Training, Epoch: 0016, Batch: 002835, Sample Num: 45360, Cur Loss: 1.26465368, Cur Avg Loss: 0.57489072, Log Avg loss: 0.58103037, Global Avg Loss: 1.01005036, Time: 0.0622
+Steps: 69000, Updated lr: 0.000069
+Training, Epoch: 0016, Batch: 003835, Sample Num: 61360, Cur Loss: 0.48934013, Cur Avg Loss: 0.57812281, Log Avg loss: 0.58728579, Global Avg Loss: 1.00401087, Time: 0.0626
+Steps: 70000, Updated lr: 0.000069
+***** Running evaluation checkpoint-70576 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-70576 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 277.273741, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.805574, "eval_total_loss": 380.230739, "eval_acc": 0.839115, "eval_prec": 0.721063, "eval_recall": 0.767005, "eval_f1": 0.735199, "eval_top2_acc": 0.929025, "eval_top3_acc": 0.982918, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.940994, "eval_pr_auc": 0.795398, "eval_mcc": 0.757577, "eval_sn": 0.767005, "eval_sp": 0.945581, "eval_confusion_matrix": [[727, 144, 224, 44], [41, 221, 62, 16], [267, 187, 2634, 79], [51, 24, 76, 2755]], "update_flag": true, "test_avg_loss": 0.82922, "test_total_loss": 391.391714, "test_acc": 0.835805, "test_prec": 0.717899, "test_recall": 0.759594, "test_f1": 0.732039, "test_top2_acc": 0.927304, "test_top3_acc": 0.980667, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.938808, "test_pr_auc": 0.797607, "test_mcc": 0.751963, "test_sn": 0.759594, "test_sp": 0.943969, "test_confusion_matrix": [[721, 124, 236, 58], [50, 214, 58, 18], [283, 169, 2622, 93], [50, 30, 71, 2755]], "lr": 6.830972443634708e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 1.0006095320407296, "train_cur_epoch_loss": 2555.358667306602, "train_cur_epoch_avg_loss": 0.5793150458641129, "train_cur_epoch_time": 277.27374148368835, "train_cur_epoch_avg_time": 0.06285961040210572, "epoch": 16, "step": 70576}
+##################################################
+Training, Epoch: 0017, Batch: 000424, Sample Num: 6784, Cur Loss: 0.28504136, Cur Avg Loss: 0.50472004, Log Avg loss: 0.55225897, Global Avg Loss: 0.99764816, Time: 0.0612
+Steps: 71000, Updated lr: 0.000068
+Training, Epoch: 0017, Batch: 001424, Sample Num: 22784, Cur Loss: 0.44435903, Cur Avg Loss: 0.52478949, Log Avg loss: 0.53329893, Global Avg Loss: 0.99119887, Time: 0.0618
+Steps: 72000, Updated lr: 0.000068
+Training, Epoch: 0017, Batch: 002424, Sample Num: 38784, Cur Loss: 0.27206835, Cur Avg Loss: 0.53085713, Log Avg loss: 0.53949746, Global Avg Loss: 0.98501118, Time: 0.0652
+Steps: 73000, Updated lr: 0.000067
+Training, Epoch: 0017, Batch: 003424, Sample Num: 54784, Cur Loss: 0.98901677, Cur Avg Loss: 0.53728199, Log Avg loss: 0.55285584, Global Avg Loss: 0.97917124, Time: 0.0642
+Steps: 74000, Updated lr: 0.000067
+***** Running evaluation checkpoint-74987 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-74987 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 276.654927, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.801782, "eval_total_loss": 378.440999, "eval_acc": 0.830376, "eval_prec": 0.705215, "eval_recall": 0.754221, "eval_f1": 0.719922, "eval_top2_acc": 0.92545, "eval_top3_acc": 0.981594, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.939087, "eval_pr_auc": 0.794935, "eval_mcc": 0.745842, "eval_sn": 0.754221, "eval_sp": 0.943701, "eval_confusion_matrix": [[716, 170, 222, 31], [55, 212, 57, 16], [316, 179, 2605, 67], [51, 43, 74, 2738]], "update_flag": false, "test_avg_loss": 0.830094, "test_total_loss": 391.804351, "test_acc": 0.832495, "test_prec": 0.710604, "test_recall": 0.759279, "test_f1": 0.725674, "test_top2_acc": 0.923464, "test_top3_acc": 0.979608, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.936501, "test_pr_auc": 0.798001, "test_mcc": 0.748441, "test_sn": 0.759279, "test_sp": 0.943932, "test_confusion_matrix": [[720, 141, 230, 48], [56, 217, 52, 15], [293, 187, 2619, 68], [57, 44, 74, 2731]], "lr": 6.630061489410158e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.9737210261063315, "train_cur_epoch_loss": 2397.400251328945, "train_cur_epoch_avg_loss": 0.5435049311559613, "train_cur_epoch_time": 276.6549274921417, "train_cur_epoch_avg_time": 0.0627193215806261, "epoch": 17, "step": 74987}
+##################################################
+Training, Epoch: 0018, Batch: 000013, Sample Num: 208, Cur Loss: 0.23988193, Cur Avg Loss: 0.40027831, Log Avg loss: 0.56295034, Global Avg Loss: 0.97362163, Time: 0.0640
+Steps: 75000, Updated lr: 0.000066
+Training, Epoch: 0018, Batch: 001013, Sample Num: 16208, Cur Loss: 0.80149782, Cur Avg Loss: 0.49089376, Log Avg loss: 0.49207176, Global Avg Loss: 0.96728545, Time: 0.0638
+Steps: 76000, Updated lr: 0.000066
+Training, Epoch: 0018, Batch: 002013, Sample Num: 32208, Cur Loss: 1.35453308, Cur Avg Loss: 0.50281584, Log Avg loss: 0.51489291, Global Avg Loss: 0.96141022, Time: 0.0610
+Steps: 77000, Updated lr: 0.000065
+Training, Epoch: 0018, Batch: 003013, Sample Num: 48208, Cur Loss: 0.24341652, Cur Avg Loss: 0.51062093, Log Avg loss: 0.52633258, Global Avg Loss: 0.95583230, Time: 0.0627
+Steps: 78000, Updated lr: 0.000065
+Training, Epoch: 0018, Batch: 004013, Sample Num: 64208, Cur Loss: 0.45102632, Cur Avg Loss: 0.51270208, Log Avg loss: 0.51897259, Global Avg Loss: 0.95030243, Time: 0.0606
+Steps: 79000, Updated lr: 0.000064
+***** Running evaluation checkpoint-79398 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-79398 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 279.029005, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.817067, "eval_total_loss": 385.655609, "eval_acc": 0.844677, "eval_prec": 0.733055, "eval_recall": 0.761217, "eval_f1": 0.745304, "eval_top2_acc": 0.937103, "eval_top3_acc": 0.985832, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.944043, "eval_pr_auc": 0.80033, "eval_mcc": 0.764881, "eval_sn": 0.761217, "eval_sp": 0.947004, "eval_confusion_matrix": [[784, 91, 224, 40], [65, 195, 65, 15], [334, 110, 2652, 71], [77, 18, 63, 2748]], "update_flag": true, "test_avg_loss": 0.836427, "test_total_loss": 394.793367, "test_acc": 0.846266, "test_prec": 0.737884, "test_recall": 0.763971, "test_f1": 0.749419, "test_top2_acc": 0.935646, "test_top3_acc": 0.983713, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.942274, "test_pr_auc": 0.80788, "test_mcc": 0.766889, "test_sn": 0.763971, "test_sp": 0.947248, "test_confusion_matrix": [[783, 88, 226, 42], [68, 198, 59, 15], [322, 104, 2665, 76], [74, 16, 71, 2745]], "lr": 6.429150535185608e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.9482268307355399, "train_cur_epoch_loss": 2270.895322104916, "train_cur_epoch_avg_loss": 0.5148255094320825, "train_cur_epoch_time": 279.02900528907776, "train_cur_epoch_avg_time": 0.06325753917231416, "epoch": 18, "step": 79398}
+##################################################
+Training, Epoch: 0019, Batch: 000602, Sample Num: 9632, Cur Loss: 1.07560837, Cur Avg Loss: 0.49422328, Log Avg loss: 0.51094427, Global Avg Loss: 0.94481045, Time: 0.0627
+Steps: 80000, Updated lr: 0.000064
+Training, Epoch: 0019, Batch: 001602, Sample Num: 25632, Cur Loss: 0.06239399, Cur Avg Loss: 0.48276023, Log Avg loss: 0.47585947, Global Avg Loss: 0.93902094, Time: 0.0614
+Steps: 81000, Updated lr: 0.000064
+Training, Epoch: 0019, Batch: 002602, Sample Num: 41632, Cur Loss: 0.14331891, Cur Avg Loss: 0.48670085, Log Avg loss: 0.49301374, Global Avg Loss: 0.93358182, Time: 0.0771
+Steps: 82000, Updated lr: 0.000063
+Training, Epoch: 0019, Batch: 003602, Sample Num: 57632, Cur Loss: 1.05361485, Cur Avg Loss: 0.49323265, Log Avg loss: 0.51022839, Global Avg Loss: 0.92848118, Time: 0.0634
+Steps: 83000, Updated lr: 0.000063
+***** Running evaluation checkpoint-83809 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-83809 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 278.046613, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.812881, "eval_total_loss": 383.680023, "eval_acc": 0.846796, "eval_prec": 0.730707, "eval_recall": 0.766542, "eval_f1": 0.744594, "eval_top2_acc": 0.936043, "eval_top3_acc": 0.984375, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.94468, "eval_pr_auc": 0.802054, "eval_mcc": 0.767944, "eval_sn": 0.766542, "eval_sp": 0.94772, "eval_confusion_matrix": [[766, 121, 213, 39], [59, 205, 65, 11], [285, 141, 2672, 69], [48, 17, 89, 2752]], "update_flag": false, "test_avg_loss": 0.837961, "test_total_loss": 395.517533, "test_acc": 0.84759, "test_prec": 0.73089, "test_recall": 0.769283, "test_f1": 0.745526, "test_top2_acc": 0.93419, "test_top3_acc": 0.983316, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.942274, "test_pr_auc": 0.808075, "test_mcc": 0.769444, "test_sn": 0.769283, "test_sp": 0.948282, "test_confusion_matrix": [[763, 117, 224, 35], [55, 209, 61, 15], [286, 151, 2668, 62], [57, 17, 71, 2761]], "lr": 6.228239580961058e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.9243811050384468, "train_cur_epoch_loss": 2184.1421254267916, "train_cur_epoch_avg_loss": 0.49515804249077117, "train_cur_epoch_time": 278.046612739563, "train_cur_epoch_avg_time": 0.06303482492395443, "epoch": 19, "step": 83809}
+##################################################
+Training, Epoch: 0020, Batch: 000191, Sample Num: 3056, Cur Loss: 0.12463175, Cur Avg Loss: 0.45170711, Log Avg loss: 0.49379418, Global Avg Loss: 0.92330633, Time: 0.0620
+Steps: 84000, Updated lr: 0.000062
+Training, Epoch: 0020, Batch: 001191, Sample Num: 19056, Cur Loss: 0.28059980, Cur Avg Loss: 0.47963832, Log Avg loss: 0.48497318, Global Avg Loss: 0.91814947, Time: 0.0620
+Steps: 85000, Updated lr: 0.000062
+Training, Epoch: 0020, Batch: 002191, Sample Num: 35056, Cur Loss: 0.40183961, Cur Avg Loss: 0.46813900, Log Avg loss: 0.45444332, Global Avg Loss: 0.91275754, Time: 0.0771
+Steps: 86000, Updated lr: 0.000061
+Training, Epoch: 0020, Batch: 003191, Sample Num: 51056, Cur Loss: 0.25453252, Cur Avg Loss: 0.46563034, Log Avg loss: 0.46013384, Global Avg Loss: 0.90755497, Time: 0.0635
+Steps: 87000, Updated lr: 0.000061
+Training, Epoch: 0020, Batch: 004191, Sample Num: 67056, Cur Loss: 0.57536328, Cur Avg Loss: 0.47025576, Log Avg loss: 0.48501548, Global Avg Loss: 0.90275339, Time: 0.0604
+Steps: 88000, Updated lr: 0.000060
+***** Running evaluation checkpoint-88220 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-88220 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 277.675176, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.809141, "eval_total_loss": 381.914353, "eval_acc": 0.844412, "eval_prec": 0.726754, "eval_recall": 0.774339, "eval_f1": 0.744732, "eval_top2_acc": 0.934454, "eval_top3_acc": 0.983051, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.944152, "eval_pr_auc": 0.809454, "eval_mcc": 0.767437, "eval_sn": 0.774339, "eval_sp": 0.948534, "eval_confusion_matrix": [[812, 114, 176, 37], [64, 209, 47, 20], [352, 152, 2586, 77], [63, 23, 50, 2770]], "update_flag": false, "test_avg_loss": 0.86269, "test_total_loss": 407.189674, "test_acc": 0.842029, "test_prec": 0.724719, "test_recall": 0.77109, "test_f1": 0.742333, "test_top2_acc": 0.932865, "test_top3_acc": 0.981594, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.938988, "test_pr_auc": 0.808301, "test_mcc": 0.763366, "test_sn": 0.77109, "test_sp": 0.947479, "test_confusion_matrix": [[790, 112, 186, 51], [61, 211, 50, 18], [355, 140, 2595, 77], [63, 34, 46, 2763]], "lr": 6.027328626736507e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.9018120377440435, "train_cur_epoch_loss": 2086.4019376123324, "train_cur_epoch_avg_loss": 0.4729997591503814, "train_cur_epoch_time": 277.6751763820648, "train_cur_epoch_avg_time": 0.06295061808706978, "epoch": 20, "step": 88220}
+##################################################
+Training, Epoch: 0021, Batch: 000780, Sample Num: 12480, Cur Loss: 0.94636124, Cur Avg Loss: 0.44077703, Log Avg loss: 0.45936614, Global Avg Loss: 0.89777151, Time: 0.0700
+Steps: 89000, Updated lr: 0.000060
+Training, Epoch: 0021, Batch: 001780, Sample Num: 28480, Cur Loss: 0.92715430, Cur Avg Loss: 0.43648493, Log Avg loss: 0.43313710, Global Avg Loss: 0.89260890, Time: 0.0611
+Steps: 90000, Updated lr: 0.000059
+Training, Epoch: 0021, Batch: 002780, Sample Num: 44480, Cur Loss: 0.16316354, Cur Avg Loss: 0.44861681, Log Avg loss: 0.47021156, Global Avg Loss: 0.88796717, Time: 0.0605
+Steps: 91000, Updated lr: 0.000059
+Training, Epoch: 0021, Batch: 003780, Sample Num: 60480, Cur Loss: 0.26642650, Cur Avg Loss: 0.44805168, Log Avg loss: 0.44648061, Global Avg Loss: 0.88316841, Time: 0.0718
+Steps: 92000, Updated lr: 0.000059
+***** Running evaluation checkpoint-92631 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-92631 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 277.140948, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.818115, "eval_total_loss": 386.150085, "eval_acc": 0.847987, "eval_prec": 0.732819, "eval_recall": 0.765373, "eval_f1": 0.746552, "eval_top2_acc": 0.937235, "eval_top3_acc": 0.983448, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.945281, "eval_pr_auc": 0.814575, "eval_mcc": 0.770736, "eval_sn": 0.765373, "eval_sp": 0.948876, "eval_confusion_matrix": [[804, 94, 206, 35], [78, 194, 52, 16], [336, 118, 2654, 59], [71, 22, 61, 2752]], "update_flag": true, "test_avg_loss": 0.846829, "test_total_loss": 399.703059, "test_acc": 0.8509, "test_prec": 0.739415, "test_recall": 0.774972, "test_f1": 0.754296, "test_top2_acc": 0.934587, "test_top3_acc": 0.981065, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.943062, "test_pr_auc": 0.817, "test_mcc": 0.774852, "test_sn": 0.774972, "test_sp": 0.949583, "test_confusion_matrix": [[804, 94, 204, 37], [64, 206, 53, 17], [315, 119, 2666, 67], [70, 24, 62, 2750]], "lr": 5.826417672511957e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.8803497924687496, "train_cur_epoch_loss": 1989.823656393215, "train_cur_epoch_avg_loss": 0.451104886962869, "train_cur_epoch_time": 277.1409475803375, "train_cur_epoch_avg_time": 0.06282950523245014, "epoch": 21, "step": 92631}
+##################################################
+Training, Epoch: 0022, Batch: 000369, Sample Num: 5904, Cur Loss: 0.26664686, Cur Avg Loss: 0.42571133, Log Avg loss: 0.45327579, Global Avg Loss: 0.87854590, Time: 0.0629
+Steps: 93000, Updated lr: 0.000058
+Training, Epoch: 0022, Batch: 001369, Sample Num: 21904, Cur Loss: 0.78136736, Cur Avg Loss: 0.41865620, Log Avg loss: 0.41605286, Global Avg Loss: 0.87362577, Time: 0.0808
+Steps: 94000, Updated lr: 0.000058
+Training, Epoch: 0022, Batch: 002369, Sample Num: 37904, Cur Loss: 0.09565656, Cur Avg Loss: 0.43149979, Log Avg loss: 0.44908267, Global Avg Loss: 0.86915689, Time: 0.0634
+Steps: 95000, Updated lr: 0.000057
+Training, Epoch: 0022, Batch: 003369, Sample Num: 53904, Cur Loss: 0.24899258, Cur Avg Loss: 0.43694325, Log Avg loss: 0.44983880, Global Avg Loss: 0.86478899, Time: 0.0624
+Steps: 96000, Updated lr: 0.000057
+Training, Epoch: 0022, Batch: 004369, Sample Num: 69904, Cur Loss: 0.44578063, Cur Avg Loss: 0.43582016, Log Avg loss: 0.43203648, Global Avg Loss: 0.86032763, Time: 0.0623
+Steps: 97000, Updated lr: 0.000056
+***** Running evaluation checkpoint-97042 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-97042 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 279.179953, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.833263, "eval_total_loss": 393.299925, "eval_acc": 0.854873, "eval_prec": 0.747185, "eval_recall": 0.773127, "eval_f1": 0.758663, "eval_top2_acc": 0.938957, "eval_top3_acc": 0.985037, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.947105, "eval_pr_auc": 0.816111, "eval_mcc": 0.780154, "eval_sn": 0.773127, "eval_sp": 0.950559, "eval_confusion_matrix": [[816, 82, 207, 34], [65, 197, 68, 10], [314, 103, 2692, 58], [76, 17, 62, 2751]], "update_flag": true, "test_avg_loss": 0.868592, "test_total_loss": 409.975473, "test_acc": 0.851827, "test_prec": 0.745009, "test_recall": 0.769815, "test_f1": 0.755918, "test_top2_acc": 0.941472, "test_top3_acc": 0.983316, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.943968, "test_pr_auc": 0.819628, "test_mcc": 0.77585, "test_sn": 0.769815, "test_sp": 0.949627, "test_confusion_matrix": [[815, 82, 204, 38], [76, 195, 56, 13], [333, 94, 2678, 62], [75, 18, 68, 2745]], "lr": 5.625506718287407e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.8601536266956015, "train_cur_epoch_loss": 1923.34661562182, "train_cur_epoch_avg_loss": 0.4360341454594922, "train_cur_epoch_time": 279.17995285987854, "train_cur_epoch_avg_time": 0.06329175988661949, "epoch": 22, "step": 97042}
+##################################################
+Training, Epoch: 0023, Batch: 000958, Sample Num: 15328, Cur Loss: 0.03670705, Cur Avg Loss: 0.40762340, Log Avg loss: 0.40975154, Global Avg Loss: 0.85572991, Time: 0.0642
+Steps: 98000, Updated lr: 0.000056
+Training, Epoch: 0023, Batch: 001958, Sample Num: 31328, Cur Loss: 0.47177035, Cur Avg Loss: 0.41412338, Log Avg loss: 0.42035035, Global Avg Loss: 0.85133214, Time: 0.0621
+Steps: 99000, Updated lr: 0.000055
+Training, Epoch: 0023, Batch: 002958, Sample Num: 47328, Cur Loss: 0.02891236, Cur Avg Loss: 0.41673613, Log Avg loss: 0.42185191, Global Avg Loss: 0.84703734, Time: 0.0610
+Steps: 100000, Updated lr: 0.000055
+Training, Epoch: 0023, Batch: 003958, Sample Num: 63328, Cur Loss: 0.28661102, Cur Avg Loss: 0.41580305, Log Avg loss: 0.41304299, Global Avg Loss: 0.84274036, Time: 0.0607
+Steps: 101000, Updated lr: 0.000054
+***** Running evaluation checkpoint-101453 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-101453 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 284.118251, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.86654, "eval_total_loss": 409.006808, "eval_acc": 0.861361, "eval_prec": 0.757292, "eval_recall": 0.765098, "eval_f1": 0.760569, "eval_top2_acc": 0.940943, "eval_top3_acc": 0.985037, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.948196, "eval_pr_auc": 0.818527, "eval_mcc": 0.787214, "eval_sn": 0.765098, "eval_sp": 0.950843, "eval_confusion_matrix": [[754, 86, 255, 44], [55, 192, 83, 10], [227, 91, 2794, 55], [45, 15, 81, 2765]], "update_flag": true, "test_avg_loss": 0.88776, "test_total_loss": 419.022558, "test_acc": 0.865466, "test_prec": 0.766286, "test_recall": 0.773614, "test_f1": 0.769154, "test_top2_acc": 0.940546, "test_top3_acc": 0.983978, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.946111, "test_pr_auc": 0.822584, "test_mcc": 0.793356, "test_sn": 0.773614, "test_sp": 0.952104, "test_confusion_matrix": [[755, 80, 255, 49], [53, 201, 69, 17], [203, 89, 2812, 63], [48, 16, 74, 2768]], "lr": 5.4245957640628566e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.8408732237219684, "train_cur_epoch_loss": 1838.0829244703054, "train_cur_epoch_avg_loss": 0.4167043583020416, "train_cur_epoch_time": 284.1182508468628, "train_cur_epoch_avg_time": 0.06441130148421283, "epoch": 23, "step": 101453}
+##################################################
+Training, Epoch: 0024, Batch: 000547, Sample Num: 8752, Cur Loss: 0.48457396, Cur Avg Loss: 0.36975225, Log Avg loss: 0.39458894, Global Avg Loss: 0.83834672, Time: 0.0623
+Steps: 102000, Updated lr: 0.000054
+Training, Epoch: 0024, Batch: 001547, Sample Num: 24752, Cur Loss: 0.51287264, Cur Avg Loss: 0.38355293, Log Avg loss: 0.39110190, Global Avg Loss: 0.83400454, Time: 0.0649
+Steps: 103000, Updated lr: 0.000054
+Training, Epoch: 0024, Batch: 002547, Sample Num: 40752, Cur Loss: 0.81116593, Cur Avg Loss: 0.40041851, Log Avg loss: 0.42650957, Global Avg Loss: 0.83008632, Time: 0.0613
+Steps: 104000, Updated lr: 0.000053
+Training, Epoch: 0024, Batch: 003547, Sample Num: 56752, Cur Loss: 0.10582671, Cur Avg Loss: 0.40129076, Log Avg loss: 0.40351238, Global Avg Loss: 0.82602371, Time: 0.0617
+Steps: 105000, Updated lr: 0.000053
+***** Running evaluation checkpoint-105864 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-105864 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 278.964816, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.841417, "eval_total_loss": 397.148624, "eval_acc": 0.857654, "eval_prec": 0.745192, "eval_recall": 0.781695, "eval_f1": 0.758852, "eval_top2_acc": 0.938294, "eval_top3_acc": 0.983845, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.947204, "eval_pr_auc": 0.821106, "eval_mcc": 0.783994, "eval_sn": 0.781695, "eval_sp": 0.951481, "eval_confusion_matrix": [[767, 125, 219, 28], [44, 218, 67, 11], [253, 126, 2739, 49], [56, 23, 74, 2753]], "update_flag": false, "test_avg_loss": 0.883519, "test_total_loss": 417.020969, "test_acc": 0.857918, "test_prec": 0.746555, "test_recall": 0.783956, "test_f1": 0.760506, "test_top2_acc": 0.941075, "test_top3_acc": 0.982256, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.943415, "test_pr_auc": 0.820145, "test_mcc": 0.784496, "test_sn": 0.783956, "test_sp": 0.951538, "test_confusion_matrix": [[778, 109, 217, 35], [53, 219, 54, 14], [233, 133, 2743, 58], [58, 34, 75, 2739]], "lr": 5.2236848098383066e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.8226906242444241, "train_cur_epoch_loss": 1784.2090787468478, "train_cur_epoch_avg_loss": 0.40449083626090404, "train_cur_epoch_time": 278.9648160934448, "train_cur_epoch_avg_time": 0.06324298709894464, "epoch": 24, "step": 105864}
+##################################################
+Training, Epoch: 0025, Batch: 000136, Sample Num: 2176, Cur Loss: 0.17719042, Cur Avg Loss: 0.31859121, Log Avg loss: 0.40415914, Global Avg Loss: 0.82204386, Time: 0.0612
+Steps: 106000, Updated lr: 0.000052
+Training, Epoch: 0025, Batch: 001136, Sample Num: 18176, Cur Loss: 1.04011250, Cur Avg Loss: 0.36159704, Log Avg loss: 0.36744583, Global Avg Loss: 0.81779528, Time: 0.0644
+Steps: 107000, Updated lr: 0.000052
+Training, Epoch: 0025, Batch: 002136, Sample Num: 34176, Cur Loss: 0.35741204, Cur Avg Loss: 0.37580581, Log Avg loss: 0.39194698, Global Avg Loss: 0.81385224, Time: 0.0617
+Steps: 108000, Updated lr: 0.000051
+Training, Epoch: 0025, Batch: 003136, Sample Num: 50176, Cur Loss: 0.52535605, Cur Avg Loss: 0.38005366, Log Avg loss: 0.38912704, Global Avg Loss: 0.80995567, Time: 0.0623
+Steps: 109000, Updated lr: 0.000051
+Training, Epoch: 0025, Batch: 004136, Sample Num: 66176, Cur Loss: 0.24926606, Cur Avg Loss: 0.38670961, Log Avg loss: 0.40758270, Global Avg Loss: 0.80629774, Time: 0.0605
+Steps: 110000, Updated lr: 0.000050
+***** Running evaluation checkpoint-110275 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-110275 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 280.803579, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.86849, "eval_total_loss": 409.92739, "eval_acc": 0.861758, "eval_prec": 0.752333, "eval_recall": 0.777545, "eval_f1": 0.761964, "eval_top2_acc": 0.938824, "eval_top3_acc": 0.98464, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.94847, "eval_pr_auc": 0.821211, "eval_mcc": 0.789072, "eval_sn": 0.777545, "eval_sp": 0.952002, "eval_confusion_matrix": [[766, 104, 232, 37], [48, 208, 71, 13], [218, 122, 2766, 61], [46, 22, 70, 2768]], "update_flag": true, "test_avg_loss": 0.901117, "test_total_loss": 425.327102, "test_acc": 0.861494, "test_prec": 0.751902, "test_recall": 0.780896, "test_f1": 0.762759, "test_top2_acc": 0.938692, "test_top3_acc": 0.982521, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.945797, "test_pr_auc": 0.825092, "test_mcc": 0.78896, "test_sn": 0.780896, "test_sp": 0.952153, "test_confusion_matrix": [[763, 104, 228, 44], [50, 214, 58, 18], [217, 129, 2762, 59], [48, 23, 68, 2767]], "lr": 5.022773855613756e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.8052645827020595, "train_cur_epoch_loss": 1707.2316124578938, "train_cur_epoch_avg_loss": 0.38703958568530805, "train_cur_epoch_time": 280.8035786151886, "train_cur_epoch_avg_time": 0.06365984552600058, "epoch": 25, "step": 110275}
+##################################################
+Training, Epoch: 0026, Batch: 000725, Sample Num: 11600, Cur Loss: 0.29659653, Cur Avg Loss: 0.36913259, Log Avg loss: 0.37542178, Global Avg Loss: 0.80241597, Time: 0.0623
+Steps: 111000, Updated lr: 0.000050
+Training, Epoch: 0026, Batch: 001725, Sample Num: 27600, Cur Loss: 0.39053321, Cur Avg Loss: 0.36582036, Log Avg loss: 0.36341898, Global Avg Loss: 0.79849636, Time: 0.0619
+Steps: 112000, Updated lr: 0.000049
+Training, Epoch: 0026, Batch: 002725, Sample Num: 43600, Cur Loss: 0.53324729, Cur Avg Loss: 0.36574734, Log Avg loss: 0.36562139, Global Avg Loss: 0.79466560, Time: 0.0618
+Steps: 113000, Updated lr: 0.000049
+Training, Epoch: 0026, Batch: 003725, Sample Num: 59600, Cur Loss: 0.48206419, Cur Avg Loss: 0.37585385, Log Avg loss: 0.40339409, Global Avg Loss: 0.79123340, Time: 0.0705
+Steps: 114000, Updated lr: 0.000049
+***** Running evaluation checkpoint-114686 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-114686 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 283.309166, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.860779, "eval_total_loss": 406.287793, "eval_acc": 0.858051, "eval_prec": 0.74936, "eval_recall": 0.775907, "eval_f1": 0.760596, "eval_top2_acc": 0.938162, "eval_top3_acc": 0.983845, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.948757, "eval_pr_auc": 0.823075, "eval_mcc": 0.783808, "eval_sn": 0.775907, "eval_sp": 0.950998, "eval_confusion_matrix": [[775, 98, 230, 36], [57, 207, 63, 13], [271, 111, 2735, 50], [45, 18, 80, 2763]], "update_flag": false, "test_avg_loss": 0.89073, "test_total_loss": 420.424765, "test_acc": 0.862023, "test_prec": 0.752152, "test_recall": 0.786158, "test_f1": 0.765856, "test_top2_acc": 0.938824, "test_top3_acc": 0.983051, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.946092, "test_pr_auc": 0.8246, "test_mcc": 0.790501, "test_sn": 0.786158, "test_sp": 0.952968, "test_confusion_matrix": [[789, 99, 216, 35], [55, 216, 55, 14], [255, 123, 2741, 48], [53, 25, 64, 2764]], "lr": 4.821862901389205e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.7887441825629814, "train_cur_epoch_loss": 1657.3634639484808, "train_cur_epoch_avg_loss": 0.3757341790860306, "train_cur_epoch_time": 283.3091661930084, "train_cur_epoch_avg_time": 0.06422787716912456, "epoch": 26, "step": 114686}
+##################################################
+Training, Epoch: 0027, Batch: 000314, Sample Num: 5024, Cur Loss: 0.10392429, Cur Avg Loss: 0.32494199, Log Avg loss: 0.35933966, Global Avg Loss: 0.78747780, Time: 0.0624
+Steps: 115000, Updated lr: 0.000048
+Training, Epoch: 0027, Batch: 001314, Sample Num: 21024, Cur Loss: 0.05031905, Cur Avg Loss: 0.34603980, Log Avg loss: 0.35266451, Global Avg Loss: 0.78372941, Time: 0.0608
+Steps: 116000, Updated lr: 0.000048
+Training, Epoch: 0027, Batch: 002314, Sample Num: 37024, Cur Loss: 0.82125783, Cur Avg Loss: 0.35704785, Log Avg loss: 0.37151244, Global Avg Loss: 0.78020619, Time: 0.0634
+Steps: 117000, Updated lr: 0.000047
+Training, Epoch: 0027, Batch: 003314, Sample Num: 53024, Cur Loss: 0.13048545, Cur Avg Loss: 0.35699138, Log Avg loss: 0.35686069, Global Avg Loss: 0.77661851, Time: 0.0607
+Steps: 118000, Updated lr: 0.000047
+Training, Epoch: 0027, Batch: 004314, Sample Num: 69024, Cur Loss: 0.20944993, Cur Avg Loss: 0.36294817, Log Avg loss: 0.38268896, Global Avg Loss: 0.77330818, Time: 0.0629
+Steps: 119000, Updated lr: 0.000046
+***** Running evaluation checkpoint-119097 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-119097 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 280.471308, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.868558, "eval_total_loss": 409.959257, "eval_acc": 0.860434, "eval_prec": 0.746685, "eval_recall": 0.779768, "eval_f1": 0.759564, "eval_top2_acc": 0.939486, "eval_top3_acc": 0.983448, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.948631, "eval_pr_auc": 0.82434, "eval_mcc": 0.78801, "eval_sn": 0.779768, "eval_sp": 0.952514, "eval_confusion_matrix": [[768, 114, 211, 46], [55, 212, 60, 13], [255, 120, 2735, 57], [45, 27, 51, 2783]], "update_flag": false, "test_avg_loss": 0.900497, "test_total_loss": 425.034565, "test_acc": 0.863083, "test_prec": 0.754231, "test_recall": 0.785456, "test_f1": 0.765991, "test_top2_acc": 0.937235, "test_top3_acc": 0.981462, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.945867, "test_pr_auc": 0.824348, "test_mcc": 0.791571, "test_sn": 0.785456, "test_sp": 0.952901, "test_confusion_matrix": [[765, 105, 212, 57], [51, 219, 53, 17], [224, 119, 2760, 64], [43, 30, 59, 2774]], "lr": 4.620951947164655e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.7729771965465787, "train_cur_epoch_loss": 1601.3498556897976, "train_cur_epoch_avg_loss": 0.36303556012010824, "train_cur_epoch_time": 280.471307516098, "train_cur_epoch_avg_time": 0.06358451768671458, "epoch": 27, "step": 119097}
+##################################################
+Training, Epoch: 0028, Batch: 000903, Sample Num: 14448, Cur Loss: 0.10527791, Cur Avg Loss: 0.34037393, Log Avg loss: 0.34294913, Global Avg Loss: 0.76972186, Time: 0.0636
+Steps: 120000, Updated lr: 0.000046
+Training, Epoch: 0028, Batch: 001903, Sample Num: 30448, Cur Loss: 0.55479991, Cur Avg Loss: 0.34974678, Log Avg loss: 0.35821047, Global Avg Loss: 0.76632094, Time: 0.0651
+Steps: 121000, Updated lr: 0.000045
+Training, Epoch: 0028, Batch: 002903, Sample Num: 46448, Cur Loss: 0.35071474, Cur Avg Loss: 0.34499564, Log Avg loss: 0.33595422, Global Avg Loss: 0.76279334, Time: 0.0624
+Steps: 122000, Updated lr: 0.000045
+Training, Epoch: 0028, Batch: 003903, Sample Num: 62448, Cur Loss: 0.37029582, Cur Avg Loss: 0.35154454, Log Avg loss: 0.37055597, Global Avg Loss: 0.75960442, Time: 0.0612
+Steps: 123000, Updated lr: 0.000044
+***** Running evaluation checkpoint-123508 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-123508 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 291.865229, Avg time per batch (s): 0.070000
+{"eval_avg_loss": 0.90056, "eval_total_loss": 425.064335, "eval_acc": 0.85964, "eval_prec": 0.750415, "eval_recall": 0.784359, "eval_f1": 0.760767, "eval_top2_acc": 0.939486, "eval_top3_acc": 0.98411, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.948815, "eval_pr_auc": 0.825487, "eval_mcc": 0.786398, "eval_sn": 0.784359, "eval_sp": 0.951535, "eval_confusion_matrix": [[725, 125, 241, 48], [36, 229, 64, 11], [204, 144, 2762, 57], [45, 20, 65, 2776]], "update_flag": false, "test_avg_loss": 0.940648, "test_total_loss": 443.985794, "test_acc": 0.863877, "test_prec": 0.75467, "test_recall": 0.788222, "test_f1": 0.764249, "test_top2_acc": 0.94187, "test_top3_acc": 0.982786, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.944951, "test_pr_auc": 0.826752, "test_mcc": 0.79302, "test_sn": 0.788222, "test_sp": 0.953178, "test_confusion_matrix": [[744, 119, 232, 44], [39, 227, 58, 16], [181, 151, 2780, 55], [39, 32, 62, 2773]], "lr": 4.420040992940105e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.7580573279875232, "train_cur_epoch_loss": 1566.8792879751418, "train_cur_epoch_avg_loss": 0.35522087689302695, "train_cur_epoch_time": 291.8652286529541, "train_cur_epoch_avg_time": 0.06616758754317709, "epoch": 28, "step": 123508}
+##################################################
+Training, Epoch: 0029, Batch: 000492, Sample Num: 7872, Cur Loss: 0.15599734, Cur Avg Loss: 0.32918268, Log Avg loss: 0.35675885, Global Avg Loss: 0.75635566, Time: 0.0712
+Steps: 124000, Updated lr: 0.000044
+Training, Epoch: 0029, Batch: 001492, Sample Num: 23872, Cur Loss: 0.31983429, Cur Avg Loss: 0.33674885, Log Avg loss: 0.34047141, Global Avg Loss: 0.75302859, Time: 0.0659
+Steps: 125000, Updated lr: 0.000044
+Training, Epoch: 0029, Batch: 002492, Sample Num: 39872, Cur Loss: 0.05711413, Cur Avg Loss: 0.33856316, Log Avg loss: 0.34127011, Global Avg Loss: 0.74976067, Time: 0.0622
+Steps: 126000, Updated lr: 0.000043
+Training, Epoch: 0029, Batch: 003492, Sample Num: 55872, Cur Loss: 0.56031084, Cur Avg Loss: 0.33559690, Log Avg loss: 0.32820499, Global Avg Loss: 0.74644133, Time: 0.0640
+Steps: 127000, Updated lr: 0.000043
+***** Running evaluation checkpoint-127919 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-127919 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 289.126713, Avg time per batch (s): 0.070000
+{"eval_avg_loss": 0.911597, "eval_total_loss": 430.273818, "eval_acc": 0.864142, "eval_prec": 0.755337, "eval_recall": 0.781027, "eval_f1": 0.765834, "eval_top2_acc": 0.939089, "eval_top3_acc": 0.985699, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.948701, "eval_pr_auc": 0.823542, "eval_mcc": 0.792783, "eval_sn": 0.781027, "eval_sp": 0.953154, "eval_confusion_matrix": [[766, 104, 228, 41], [55, 211, 64, 10], [232, 111, 2768, 56], [55, 15, 55, 2781]], "update_flag": true, "test_avg_loss": 0.944073, "test_total_loss": 445.602231, "test_acc": 0.864142, "test_prec": 0.754858, "test_recall": 0.782727, "test_f1": 0.765241, "test_top2_acc": 0.940016, "test_top3_acc": 0.984375, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.94616, "test_pr_auc": 0.827649, "test_mcc": 0.792823, "test_sn": 0.782727, "test_sp": 0.953108, "test_confusion_matrix": [[755, 109, 230, 45], [53, 216, 52, 19], [206, 124, 2779, 58], [53, 17, 60, 2776]], "lr": 4.219130038715555e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.7436613194209764, "train_cur_epoch_loss": 1502.2678539288463, "train_cur_epoch_avg_loss": 0.3405730795576618, "train_cur_epoch_time": 289.12671279907227, "train_cur_epoch_avg_time": 0.06554674967106604, "epoch": 29, "step": 127919}
+##################################################
+Training, Epoch: 0030, Batch: 000081, Sample Num: 1296, Cur Loss: 0.19668488, Cur Avg Loss: 0.34782707, Log Avg loss: 0.35853746, Global Avg Loss: 0.74341083, Time: 0.0649
+Steps: 128000, Updated lr: 0.000042
+Training, Epoch: 0030, Batch: 001081, Sample Num: 17296, Cur Loss: 0.07190031, Cur Avg Loss: 0.31588130, Log Avg loss: 0.31329369, Global Avg Loss: 0.74007659, Time: 0.0631
+Steps: 129000, Updated lr: 0.000042
+Training, Epoch: 0030, Batch: 002081, Sample Num: 33296, Cur Loss: 0.07454921, Cur Avg Loss: 0.33114807, Log Avg loss: 0.34765145, Global Avg Loss: 0.73705793, Time: 0.0626
+Steps: 130000, Updated lr: 0.000041
+Training, Epoch: 0030, Batch: 003081, Sample Num: 49296, Cur Loss: 0.38860795, Cur Avg Loss: 0.33481745, Log Avg loss: 0.34245342, Global Avg Loss: 0.73404569, Time: 0.0640
+Steps: 131000, Updated lr: 0.000041
+Training, Epoch: 0030, Batch: 004081, Sample Num: 65296, Cur Loss: 1.32922506, Cur Avg Loss: 0.33739101, Log Avg loss: 0.34532016, Global Avg Loss: 0.73110080, Time: 0.0626
+Steps: 132000, Updated lr: 0.000040
+***** Running evaluation checkpoint-132330 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-132330 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 288.738891, Avg time per batch (s): 0.070000
+{"eval_avg_loss": 0.924335, "eval_total_loss": 436.285899, "eval_acc": 0.862156, "eval_prec": 0.754403, "eval_recall": 0.778324, "eval_f1": 0.764637, "eval_top2_acc": 0.939486, "eval_top3_acc": 0.98464, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.948476, "eval_pr_auc": 0.823835, "eval_mcc": 0.789751, "eval_sn": 0.778324, "eval_sp": 0.95239, "eval_confusion_matrix": [[769, 98, 233, 39], [53, 208, 66, 13], [258, 104, 2749, 56], [52, 15, 54, 2785]], "update_flag": false, "test_avg_loss": 0.953456, "test_total_loss": 450.031042, "test_acc": 0.864804, "test_prec": 0.757722, "test_recall": 0.783537, "test_f1": 0.768437, "test_top2_acc": 0.938824, "test_top3_acc": 0.983845, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.945882, "test_pr_auc": 0.826718, "test_mcc": 0.793871, "test_sn": 0.783537, "test_sp": 0.953298, "test_confusion_matrix": [[781, 89, 224, 45], [56, 211, 55, 18], [237, 117, 2757, 56], [44, 20, 60, 2782]], "lr": 4.018219084491005e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.7300784138778753, "train_cur_epoch_loss": 1482.8641894473694, "train_cur_epoch_avg_loss": 0.3361741531279459, "train_cur_epoch_time": 288.7388906478882, "train_cur_epoch_avg_time": 0.06545882807705468, "epoch": 30, "step": 132330}
+##################################################
+Training, Epoch: 0031, Batch: 000670, Sample Num: 10720, Cur Loss: 0.59438473, Cur Avg Loss: 0.30463406, Log Avg loss: 0.31007629, Global Avg Loss: 0.72793520, Time: 0.0626
+Steps: 133000, Updated lr: 0.000040
+Training, Epoch: 0031, Batch: 001670, Sample Num: 26720, Cur Loss: 0.09464493, Cur Avg Loss: 0.31832860, Log Avg loss: 0.32750394, Global Avg Loss: 0.72494690, Time: 0.0634
+Steps: 134000, Updated lr: 0.000039
+Training, Epoch: 0031, Batch: 002670, Sample Num: 42720, Cur Loss: 0.28213918, Cur Avg Loss: 0.31396556, Log Avg loss: 0.30667929, Global Avg Loss: 0.72184863, Time: 0.0648
+Steps: 135000, Updated lr: 0.000039
+Training, Epoch: 0031, Batch: 003670, Sample Num: 58720, Cur Loss: 0.39123774, Cur Avg Loss: 0.31484285, Log Avg loss: 0.31718521, Global Avg Loss: 0.71887316, Time: 0.0635
+Steps: 136000, Updated lr: 0.000039
+***** Running evaluation checkpoint-136741 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-136741 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 283.211805, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.935296, "eval_total_loss": 441.459496, "eval_acc": 0.864539, "eval_prec": 0.764322, "eval_recall": 0.779393, "eval_f1": 0.771333, "eval_top2_acc": 0.940678, "eval_top3_acc": 0.984375, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.949999, "eval_pr_auc": 0.829357, "eval_mcc": 0.792938, "eval_sn": 0.779393, "eval_sp": 0.952681, "eval_confusion_matrix": [[790, 82, 231, 36], [54, 203, 68, 15], [266, 84, 2754, 63], [47, 14, 63, 2782]], "update_flag": true, "test_avg_loss": 0.961481, "test_total_loss": 453.818834, "test_acc": 0.870763, "test_prec": 0.769046, "test_recall": 0.785364, "test_f1": 0.776451, "test_top2_acc": 0.942664, "test_top3_acc": 0.983581, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.947881, "test_pr_auc": 0.829393, "test_mcc": 0.802361, "test_sn": 0.785364, "test_sp": 0.955124, "test_confusion_matrix": [[787, 88, 221, 43], [62, 207, 55, 16], [244, 79, 2792, 52], [41, 19, 56, 2790]], "lr": 3.817308130266454e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.7168452875356764, "train_cur_epoch_loss": 1410.864954456687, "train_cur_epoch_avg_loss": 0.31985149726970913, "train_cur_epoch_time": 283.21180534362793, "train_cur_epoch_avg_time": 0.0642058048840689, "epoch": 31, "step": 136741}
+##################################################
+Training, Epoch: 0032, Batch: 000259, Sample Num: 4144, Cur Loss: 0.35201192, Cur Avg Loss: 0.27795460, Log Avg loss: 0.32738194, Global Avg Loss: 0.71601556, Time: 0.0620
+Steps: 137000, Updated lr: 0.000038
+Training, Epoch: 0032, Batch: 001259, Sample Num: 20144, Cur Loss: 0.02935844, Cur Avg Loss: 0.29604178, Log Avg loss: 0.30072636, Global Avg Loss: 0.71300622, Time: 0.0622
+Steps: 138000, Updated lr: 0.000038
+Training, Epoch: 0032, Batch: 002259, Sample Num: 36144, Cur Loss: 0.16478981, Cur Avg Loss: 0.30488682, Log Avg loss: 0.31602271, Global Avg Loss: 0.71015022, Time: 0.0631
+Steps: 139000, Updated lr: 0.000037
+Training, Epoch: 0032, Batch: 003259, Sample Num: 52144, Cur Loss: 0.33196276, Cur Avg Loss: 0.30985876, Log Avg loss: 0.32109039, Global Avg Loss: 0.70737122, Time: 0.0636
+Steps: 140000, Updated lr: 0.000037
+Training, Epoch: 0032, Batch: 004259, Sample Num: 68144, Cur Loss: 0.29356289, Cur Avg Loss: 0.31349922, Log Avg loss: 0.32536346, Global Avg Loss: 0.70466195, Time: 0.0639
+Steps: 141000, Updated lr: 0.000036
+***** Running evaluation checkpoint-141152 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-141152 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 282.988297, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.942328, "eval_total_loss": 444.778745, "eval_acc": 0.863612, "eval_prec": 0.753883, "eval_recall": 0.779866, "eval_f1": 0.763773, "eval_top2_acc": 0.938559, "eval_top3_acc": 0.98464, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.948599, "eval_pr_auc": 0.828807, "eval_mcc": 0.791954, "eval_sn": 0.779866, "eval_sp": 0.952834, "eval_confusion_matrix": [[761, 110, 239, 29], [48, 211, 70, 11], [220, 120, 2789, 38], [53, 17, 75, 2761]], "update_flag": false, "test_avg_loss": 0.976786, "test_total_loss": 461.043179, "test_acc": 0.869439, "test_prec": 0.765703, "test_recall": 0.792877, "test_f1": 0.775623, "test_top2_acc": 0.943591, "test_top3_acc": 0.984507, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.945387, "test_pr_auc": 0.830794, "test_mcc": 0.800709, "test_sn": 0.792877, "test_sp": 0.954628, "test_confusion_matrix": [[768, 98, 235, 38], [44, 224, 59, 13], [194, 119, 2810, 44], [49, 23, 70, 2764]], "lr": 3.616397176041904e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.7043100971694597, "train_cur_epoch_loss": 1392.6373727476457, "train_cur_epoch_avg_loss": 0.31571919581674124, "train_cur_epoch_time": 282.98829674720764, "train_cur_epoch_avg_time": 0.06415513415262018, "epoch": 32, "step": 141152}
+##################################################
+Training, Epoch: 0033, Batch: 000848, Sample Num: 13568, Cur Loss: 0.16526292, Cur Avg Loss: 0.29441177, Log Avg loss: 0.30710538, Global Avg Loss: 0.70186225, Time: 0.0636
+Steps: 142000, Updated lr: 0.000036
+Training, Epoch: 0033, Batch: 001848, Sample Num: 29568, Cur Loss: 0.09161833, Cur Avg Loss: 0.29590597, Log Avg loss: 0.29717304, Global Avg Loss: 0.69903226, Time: 0.0684
+Steps: 143000, Updated lr: 0.000035
+Training, Epoch: 0033, Batch: 002848, Sample Num: 45568, Cur Loss: 1.59880960, Cur Avg Loss: 0.30103225, Log Avg loss: 0.31050562, Global Avg Loss: 0.69633416, Time: 0.0627
+Steps: 144000, Updated lr: 0.000035
+Training, Epoch: 0033, Batch: 003848, Sample Num: 61568, Cur Loss: 0.02262925, Cur Avg Loss: 0.30279205, Log Avg loss: 0.30780397, Global Avg Loss: 0.69365464, Time: 0.0651
+Steps: 145000, Updated lr: 0.000034
+***** Running evaluation checkpoint-145563 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-145563 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 283.566083, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.912938, "eval_total_loss": 430.90693, "eval_acc": 0.861891, "eval_prec": 0.749633, "eval_recall": 0.784184, "eval_f1": 0.762784, "eval_top2_acc": 0.939089, "eval_top3_acc": 0.984375, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.949663, "eval_pr_auc": 0.83001, "eval_mcc": 0.790223, "eval_sn": 0.784184, "eval_sp": 0.952987, "eval_confusion_matrix": [[771, 122, 220, 26], [49, 217, 65, 9], [246, 122, 2760, 39], [54, 21, 70, 2761]], "update_flag": false, "test_avg_loss": 0.960352, "test_total_loss": 453.286039, "test_acc": 0.866128, "test_prec": 0.757525, "test_recall": 0.793366, "test_f1": 0.770873, "test_top2_acc": 0.940943, "test_top3_acc": 0.983051, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.945388, "test_pr_auc": 0.830105, "test_mcc": 0.796592, "test_sn": 0.793366, "test_sp": 0.954301, "test_confusion_matrix": [[781, 107, 221, 30], [45, 225, 56, 14], [223, 128, 2774, 42], [53, 28, 64, 2761]], "lr": 3.415486221817354e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.692209617925424, "train_cur_epoch_loss": 1345.329778414918, "train_cur_epoch_avg_loss": 0.3049942821162816, "train_cur_epoch_time": 283.56608295440674, "train_cur_epoch_avg_time": 0.06428612173076553, "epoch": 33, "step": 145563}
+##################################################
+Training, Epoch: 0034, Batch: 000437, Sample Num: 6992, Cur Loss: 0.07143066, Cur Avg Loss: 0.27521129, Log Avg loss: 0.30045330, Global Avg Loss: 0.69096148, Time: 0.0629
+Steps: 146000, Updated lr: 0.000034
+Training, Epoch: 0034, Batch: 001437, Sample Num: 22992, Cur Loss: 0.05934255, Cur Avg Loss: 0.28337204, Log Avg loss: 0.28693829, Global Avg Loss: 0.68821302, Time: 0.0660
+Steps: 147000, Updated lr: 0.000034
+Training, Epoch: 0034, Batch: 002437, Sample Num: 38992, Cur Loss: 0.13237019, Cur Avg Loss: 0.28574621, Log Avg loss: 0.28915790, Global Avg Loss: 0.68551670, Time: 0.0636
+Steps: 148000, Updated lr: 0.000033
+Training, Epoch: 0034, Batch: 003437, Sample Num: 54992, Cur Loss: 0.35655189, Cur Avg Loss: 0.29378296, Log Avg loss: 0.31336852, Global Avg Loss: 0.68301906, Time: 0.0785
+Steps: 149000, Updated lr: 0.000033
+***** Running evaluation checkpoint-149974 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-149974 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 276.064034, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.9458, "eval_total_loss": 446.4178, "eval_acc": 0.864804, "eval_prec": 0.754744, "eval_recall": 0.782774, "eval_f1": 0.764177, "eval_top2_acc": 0.938559, "eval_top3_acc": 0.984375, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.952369, "eval_pr_auc": 0.834192, "eval_mcc": 0.793874, "eval_sn": 0.782774, "eval_sp": 0.953299, "eval_confusion_matrix": [[747, 125, 218, 49], [44, 217, 63, 16], [207, 125, 2774, 61], [34, 17, 62, 2793]], "update_flag": false, "test_avg_loss": 0.988815, "test_total_loss": 466.720692, "test_acc": 0.86785, "test_prec": 0.762465, "test_recall": 0.789458, "test_f1": 0.771328, "test_top2_acc": 0.94187, "test_top3_acc": 0.982918, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.948623, "test_pr_auc": 0.83495, "test_mcc": 0.798294, "test_sn": 0.789458, "test_sp": 0.95404, "test_confusion_matrix": [[749, 108, 230, 52], [43, 224, 55, 18], [188, 127, 2789, 63], [36, 20, 58, 2792]], "lr": 3.214575267592804e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.6806437830121518, "train_cur_epoch_loss": 1318.76209938596, "train_cur_epoch_avg_loss": 0.2989712308741691, "train_cur_epoch_time": 276.0640344619751, "train_cur_epoch_avg_time": 0.06258536260756634, "epoch": 34, "step": 149974}
+##################################################
+Training, Epoch: 0035, Batch: 000026, Sample Num: 416, Cur Loss: 0.26718065, Cur Avg Loss: 0.30280730, Log Avg loss: 0.31690304, Global Avg Loss: 0.68057829, Time: 0.0608
+Steps: 150000, Updated lr: 0.000032
+Training, Epoch: 0035, Batch: 001026, Sample Num: 16416, Cur Loss: 0.02204899, Cur Avg Loss: 0.29420524, Log Avg loss: 0.29398159, Global Avg Loss: 0.67801805, Time: 0.0608
+Steps: 151000, Updated lr: 0.000032
+Training, Epoch: 0035, Batch: 002026, Sample Num: 32416, Cur Loss: 0.46154964, Cur Avg Loss: 0.28819478, Log Avg loss: 0.28202805, Global Avg Loss: 0.67541285, Time: 0.0613
+Steps: 152000, Updated lr: 0.000031
+Training, Epoch: 0035, Batch: 003026, Sample Num: 48416, Cur Loss: 0.25903818, Cur Avg Loss: 0.28914825, Log Avg loss: 0.29107998, Global Avg Loss: 0.67290087, Time: 0.0623
+Steps: 153000, Updated lr: 0.000031
+Training, Epoch: 0035, Batch: 004026, Sample Num: 64416, Cur Loss: 0.05841193, Cur Avg Loss: 0.28988209, Log Avg loss: 0.29210271, Global Avg Loss: 0.67042816, Time: 0.0612
+Steps: 154000, Updated lr: 0.000030
+***** Running evaluation checkpoint-154385 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-154385 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 271.292181, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.967304, "eval_total_loss": 456.567555, "eval_acc": 0.868247, "eval_prec": 0.769448, "eval_recall": 0.776919, "eval_f1": 0.772287, "eval_top2_acc": 0.939619, "eval_top3_acc": 0.985302, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.951061, "eval_pr_auc": 0.834173, "eval_mcc": 0.797603, "eval_sn": 0.776919, "eval_sp": 0.953158, "eval_confusion_matrix": [[752, 84, 262, 41], [50, 204, 72, 14], [206, 83, 2819, 59], [44, 17, 63, 2782]], "update_flag": true, "test_avg_loss": 0.986341, "test_total_loss": 465.552814, "test_acc": 0.873941, "test_prec": 0.77665, "test_recall": 0.785977, "test_f1": 0.780164, "test_top2_acc": 0.943856, "test_top3_acc": 0.983183, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.949014, "test_pr_auc": 0.837506, "test_mcc": 0.806438, "test_sn": 0.785977, "test_sp": 0.955293, "test_confusion_matrix": [[769, 80, 243, 47], [50, 209, 64, 17], [185, 87, 2841, 54], [43, 20, 62, 2781]], "lr": 3.0136643133682534e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.6695614809235546, "train_cur_epoch_loss": 1291.3785189185292, "train_cur_epoch_avg_loss": 0.2927632099112512, "train_cur_epoch_time": 271.2921805381775, "train_cur_epoch_avg_time": 0.06150355487149796, "epoch": 35, "step": 154385}
+##################################################
+Training, Epoch: 0036, Batch: 000615, Sample Num: 9840, Cur Loss: 1.15034711, Cur Avg Loss: 0.25932908, Log Avg loss: 0.28380059, Global Avg Loss: 0.66793378, Time: 0.0599
+Steps: 155000, Updated lr: 0.000030
+Training, Epoch: 0036, Batch: 001615, Sample Num: 25840, Cur Loss: 0.31823808, Cur Avg Loss: 0.27968322, Log Avg loss: 0.29220102, Global Avg Loss: 0.66552524, Time: 0.0609
+Steps: 156000, Updated lr: 0.000029
+Training, Epoch: 0036, Batch: 002615, Sample Num: 41840, Cur Loss: 0.10362987, Cur Avg Loss: 0.27909290, Log Avg loss: 0.27813952, Global Avg Loss: 0.66305782, Time: 0.0626
+Steps: 157000, Updated lr: 0.000029
+Training, Epoch: 0036, Batch: 003615, Sample Num: 57840, Cur Loss: 0.05454548, Cur Avg Loss: 0.28764732, Log Avg loss: 0.31001713, Global Avg Loss: 0.66082338, Time: 0.0616
+Steps: 158000, Updated lr: 0.000028
+***** Running evaluation checkpoint-158796 *****
+Dev Dataset Instantaneous batch size per GPU = 16
+Dev Dataset Num examples = 7552
+##################################################
+***** Running testing checkpoint-158796 *****
+Test Dataset Instantaneous batch size per GPU = 16
+Test Dataset Num examples = [7552]
+##################################################
+Epoch Time: 270.885909, Avg time per batch (s): 0.060000
+{"eval_avg_loss": 0.988183, "eval_total_loss": 466.422223, "eval_acc": 0.869968, "eval_prec": 0.771201, "eval_recall": 0.779845, "eval_f1": 0.774742, "eval_top2_acc": 0.940413, "eval_top3_acc": 0.98464, "eval_top4_acc": 1.0, "eval_top5_acc": 1.0, "eval_top10_acc": 1.0, "eval_roc_auc": 0.950908, "eval_pr_auc": 0.833358, "eval_mcc": 0.800383, "eval_sn": 0.779845, "eval_sp": 0.953963, "eval_confusion_matrix": [[761, 83, 253, 42], [53, 205, 71, 11], [213, 85, 2825, 44], [43, 14, 70, 2779]], "update_flag": true, "test_avg_loss": 1.013379, "test_total_loss": 478.314761, "test_acc": 0.873543, "test_prec": 0.776888, "test_recall": 0.789499, "test_f1": 0.781522, "test_top2_acc": 0.943724, "test_top3_acc": 0.983316, "test_top4_acc": 1.0, "test_top5_acc": 1.0, "test_top10_acc": 1.0, "test_roc_auc": 0.948544, "test_pr_auc": 0.836582, "test_mcc": 0.805956, "test_sn": 0.789499, "test_sp": 0.955169, "test_confusion_matrix": [[763, 84, 247, 45], [48, 216, 61, 15], [187, 92, 2836, 52], [38, 18, 68, 2782]], "lr": 2.8127533591437033e-05, "cur_epoch_step": 4411, "train_global_avg_loss": 0.6589730309855136, "train_cur_epoch_loss": 1272.0321959926514, "train_cur_epoch_avg_loss": 0.288377283154081, "train_cur_epoch_time": 270.88590931892395, "train_cur_epoch_avg_time": 0.06141145076375515, "epoch": 36, "step": 158796}
+##################################################
+Training, Epoch: 0037, Batch: 000204, Sample Num: 3264, Cur Loss: 0.05092778, Cur Avg Loss: 0.27120412, Log Avg loss: 0.28751278, Global Avg Loss: 0.65847552, Time: 0.0606
+Steps: 159000, Updated lr: 0.000028
+Training, Epoch: 0037, Batch: 001204, Sample Num: 19264, Cur Loss: 0.28843984, Cur Avg Loss: 0.26773325, Log Avg loss: 0.26702519, Global Avg Loss: 0.65602895, Time: 0.0606
+Steps: 160000, Updated lr: 0.000028
+Training, Epoch: 0037, Batch: 002204, Sample Num: 35264, Cur Loss: 0.09280506, Cur Avg Loss: 0.27176912, Log Avg loss: 0.27662831, Global Avg Loss: 0.65367243, Time: 0.0598
+Steps: 161000, Updated lr: 0.000027

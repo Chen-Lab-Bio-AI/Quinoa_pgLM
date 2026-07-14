@@ -1,0 +1,20 @@
+***** Test results checkpoint-158796 *****
+Test average loss = 1.013379
+Test total loss = 478.314761
+acc = 0.873543
+avg_loss = 1.013379
+confusion_matrix = [[763, 84, 247, 45], [48, 216, 61, 15], [187, 92, 2836, 52], [38, 18, 68, 2782]]
+f1 = 0.781522
+mcc = 0.805956
+pr_auc = 0.836582
+prec = 0.776888
+recall = 0.789499
+roc_auc = 0.948544
+sn = 0.789499
+sp = 0.955169
+top10_acc = 1.0
+top2_acc = 0.943724
+top3_acc = 0.983316
+top4_acc = 1.0
+top5_acc = 1.0
+total_loss = 478.314761
